@@ -1,6 +1,7 @@
 import React from 'react';
 import LogIn from '../connection/LogIn';
 import Terms from '../other/Terms';
+import UserProfile from '../profile/UserProfile';
 import BusinessPage from '../Services/BusinessPage';
 
 function Home(props) {
@@ -9,7 +10,7 @@ function Home(props) {
             home
             {/* <LogIn></LogIn> */}
             {/* <BusinessPage/> */}
-            <Terms/>
+            <UserProfile />
         </div>
     );
 }
