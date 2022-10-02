@@ -1,5 +1,6 @@
 import React from 'react';
 import LogIn from '../connection/LogIn';
+import Terms from '../other/Terms';
 import BusinessPage from '../Services/BusinessPage';
 
 function Home(props) {
@@ -7,7 +8,8 @@ function Home(props) {
         <div>
             home
             {/* <LogIn></LogIn> */}
-            <BusinessPage/>
+            {/* <BusinessPage/> */}
+            <Terms/>
         </div>
     );
 }
