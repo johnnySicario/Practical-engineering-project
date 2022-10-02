@@ -1,16 +1,11 @@
 import React from 'react';
-import LogIn from '../connection/LogIn';
-import Terms from '../other/Terms';
-import UserProfile from '../profile/UserProfile';
-import BusinessPage from '../Services/BusinessPage';
+import Contact from '../other/Contact.js';
 
 function Home(props) {
     return (
         <div>
             home
-            {/* <LogIn></LogIn> */}
-            {/* <BusinessPage/> */}
-            <UserProfile />
+           <Contact/>
         </div>
     );
 }
