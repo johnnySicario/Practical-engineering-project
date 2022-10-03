@@ -1,0 +1,11 @@
+.Todo {
+    border-style: solid;
+    border-color: purple;
+    text-align: left;
+    padding: 5%;
+}
+.Mark {
+    float: right;
+    background-color: yellowgreen;
+    margin-right: 2%;
+}
