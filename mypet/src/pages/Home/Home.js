@@ -7,7 +7,7 @@ function Home(props) {
     return (
         <div>
             home
-            <Main /> 
+            <UserManagment /> 
         </div>
     );
 }
