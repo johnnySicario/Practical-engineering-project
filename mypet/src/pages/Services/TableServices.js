@@ -7,28 +7,29 @@ function TableServices(props) {
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
+                        <th scope="col">Business</th>
+                        <th scope="col">City</th>
+                        <th scope="col">Contact</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                        <td>המספרה של מרקו</td>
+                        <td>בית דגן</td>
+                        <td>0547747789</td>
                     </tr>
                     <tr>
                         <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
+                        <td>בית אימוץ אביאל</td>
+                        <td>פרדס חנה</td>
+                        <td>jonathan@gmail.com</td>
                     </tr>
                     <tr>
                         <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
+                        <td>Larry the Bird</td>
+                        <td>חולון</td>
+                        <td>www.pet.com</td>
                     </tr>
                 </tbody>
             </table> 

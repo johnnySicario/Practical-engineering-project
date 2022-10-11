@@ -41,7 +41,7 @@ const Header =
 
                 <ul class="navbar-nav ">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="SingUp" href="#">SingUp</a>
+                        <a class="nav-link active" aria-current="SingUp" href="#">Sign up</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="LogIn" href="#">LogIn</a>
