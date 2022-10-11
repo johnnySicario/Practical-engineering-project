@@ -10,9 +10,6 @@ require("./models/User"); // Note model must be imported before passport
 require("./services/passport");
 
 
-
-
-
 //Main starting of the application
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
