@@ -1,4 +1,5 @@
 import React from 'react';
+import './BusinessPage.css';
 import { GoogleMap, LoadScript } from '@react-google-maps/api';
 
 const containerStyle = {
