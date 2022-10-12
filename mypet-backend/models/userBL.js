@@ -1,25 +1,10 @@
+var Contact = require('./contactSchema')
 var User = require('./userSchema')
 
-
-
-var getAllUsers = ()=> {
-    return new Promise((resolve, reject)=>{
-        User.find({},(err, data)=>{
-            if(err){
-                reject(err)
-            } 
-            else{
-                resolve(data)
-            }
-        })
-
-    })
-}
-
-var getUserById = (userId)=> {
-    return new Promise((resolve, reject)=>{
-        User.findById(userId,(err,data)=>{
-            if(err){
+var getAllUsers = () => {
+    return new Promise((resolve, reject) => {
+        Contact.find({}, (err, data) => {
+            if (err) {
                 reject(err)
             }
             else {
@@ -29,19 +14,50 @@ var getUserById = (userId)=> {
     })
 }
 
-
-
-var addUser = (newUser)=> {
-    return new Promise((resolve,reject)=> {
-
-        var user = new User({
-            name: newUser.name,
-            age: newUser.age,
-            city: newUser.city
+var getUserById = (userId) => {
+    return new Promise((resolve, reject) => {
+        Contact.findById(userId, (err, data) => {
+            if (err) {
+                reject(err)
+            }
+            else {
+                resolve(data)
+            }
         })
-        console.log(user);
-        user.save((err)=>{
-            if(err){
+    })
+}
+
+var addUser = (newUser, social) => {
+    console.log(newUser)
+    return new Promise((resolve, reject) => {
+        var user;
+        if (social == "google") {
+            user = new User({
+                idSocial: newUser.id,
+                email: newUser.emails[0].value,
+                username: newUser.displayName,
+                password: newUser.password
+            })
+        }
+
+        if (social == "facebook") {
+            user = new User({
+                idSocial: newUser.id,
+                username: newUser.displayName,
+                password: newUser.password
+            })
+        }
+
+        if (social == "regular") {
+            user = new User({
+                username: newUser.username,
+                email: newUser.email,
+                password: newUser.password
+            })
+        }
+
+        user.save((err) => {
+            if (err) {
                 reject(err)
             }
             else {
@@ -52,35 +68,17 @@ var addUser = (newUser)=> {
 }
 
 
-var updateUser = (userId, updatedData) => {
-    return new Promise((resolve, reject)=>{
-        User.findByIdAndUpdate(userId,{
-            name: updatedData.name,
-            age: updatedData.age,
-            city: updatedData.city
-        },(err)=>{
-            if(err){
+var deleteUser = (userId) => {
+    return new Promise((resolve, reject) => {
+        User.findByIdAndDelete(userId, (err) => {
+            if (err) {
                 reject(err)
             }
             else {
-                resolve("User was updated!")
-            }
-        })
-
-    })
-}
-
-var deleteUser = (userId)=> {
-    return new Promise((resolve,reject)=>{
-        User.findByIdAndDelete(userId,(err)=>{
-            if(err){
-                reject(err)
-            }
-            else{
                 resolve("User deleted!!!")
             }
         })
     })
 }
 
-module.exports = {getAllUsers,getUserById,addUser,updateUser,deleteUser}
+module.exports = { getAllUsers, getUserById, addUser, deleteUser }

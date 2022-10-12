@@ -1,8 +1,13 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import "./Footer.css";
 
-const Footer =
-  <div>
+const Footer = () => {
+  const navigate = useNavigate()
+
+
+  return (
+    <div>
     <div class="p-0 bg-success bg-opacity-5 border-info rounded-end rounded-start boundary">
       MyPet, because we care
     </div>
@@ -14,7 +19,7 @@ const Footer =
             <h5>Section</h5>
             <ul class="nav flex-column">
               <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
-              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Therms of service</a></li>
+              <li style={{cursor : "pointer"}} class="nav-item mb-2"><a onClick={() => navigate('/terms')} class="nav-link p-0 text-muted">Terms of service</a></li>
               <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
               <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
             </ul>
@@ -49,6 +54,8 @@ const Footer =
         </div>
       </footer>
     </div>
-  </div>;
+  </div>
+  )
+}
 
 export default Footer;
