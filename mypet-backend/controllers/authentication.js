@@ -1,52 +1,82 @@
-const jwt = require('jwt-simple');
-const User = require('../models/User');
+const express = require("express");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const keys = require("../config/keys");
 
-const tokenForUser = (user) => {
-  const timestamp = new Date().getTime();
-  return jwt.encode({ sub: user.id, iat: timestamp }, 'secret');
-}
+const router = express.Router();
 
-exports.signin = (req, res, next) => {
-  // user has already had their email and password authenticated
-  // we just give them a token
-  res.send({ token: tokenForUser(req.user) })
-};
+const userBL = require('../models/userBL')
+const validateRegisterInput = require("../validation/register");
+const validateLoginInput = require("../validation/login");
 
-exports.signup = (req, res, next) => {
-  const email = req.body.email;
-  const password = req.body.password;
+// Load User model
+const User = require("../models/userSchema");
 
-  if (!email || !password) {
-    return res.status(422).send({
-      error: 'You must provide email and password',
-    });
+router.post("/register", (req, res) => {
+  const { errors, isValid } = validateRegisterInput(req.body);
+
+  if (!isValid) {
+    return res.status(400).json(errors);
   }
 
-  // see if user with given email exist
-  User.findOne({
-    email,
-  }, (err, data) => {
-    if (err) {
-      return next(err);
-    }
-    // If a user with email does exist, return error
-    // 422 unprocecable entity
-    if (data) {
-      return res.status(422).send({ error: 'Email is in use' });
+  User.findOne({ email: req.body.email }).then(user => {
+    if (user) {
+      return res.status(400).json({ email: "Email already exists" });
     } else {
-      // if a user with email doesnt exist, create and save user record
-      const user = new User({
-        email,
-        password,
-      });
+      bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(req.body.password, salt, (err, hash) => {
+          if (err) throw err;
+          req.body.password = hash;
 
-      user.save((err) => {
-        if (err) {
-          return next(err);
-        }
-        // respond to request
-        res.json({ token: tokenForUser(user) });
+          userBL.addUser(req.body, "regular").then(user => { res.send("done"); });
+        });
       });
     }
   });
-}
+});
+
+
+router.post("/login", (req, res) => {
+  const { errors, isValid } = validateLoginInput(req.body);
+
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+
+  const email = req.body.email;
+  const password = req.body.password;
+
+  // Find user by email
+  User.findOne({ email }).then(user => {
+    if (!user) {
+      return res.status(404).json({ emailnotfound: "Email not found" });
+    }
+
+    bcrypt.compare(password, user.password).then(isMatch => {
+      if (isMatch) {
+
+        const payload = {};
+
+        jwt.sign(
+          payload,
+          keys.secretOrKey,
+          {
+            expiresIn: 31556926 // 1 year in seconds
+          },
+          (err, token) => {
+            res.json({
+              success: true,
+              token: token
+            });
+          }
+        );
+      } else {
+        return res
+          .status(400)
+          .json({ passwordincorrect: "Password incorrect" });
+      }
+    });
+  });
+});
+
+module.exports = router;

@@ -6,5 +6,6 @@ module.exports = {
     "mongodb://localhost:27017/mypetDB",
   cookieKey: "hsdghsdghsd",
   FACEBOOK_APP_ID: "3254879584828888",
-  FACEBOOK_APP_SECRET: "b5f580791650f401b9b43d611c620f1f"
+  FACEBOOK_APP_SECRET: "b5f580791650f401b9b43d611c620f1f",
+  secretOrKey: "secret"
 };
