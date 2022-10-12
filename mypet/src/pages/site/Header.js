@@ -1,29 +1,34 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const Header =
-    <nav class="navbar navbar-expand-lg bg-light">
+const Header = () => {
+    const navigate = useNavigate()
+
+    return (
+        <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">MyPet</a>
+            <p style={{marginTop : "0.5rem" , marginRight: '0.5rem' , fontSize : '1.2rem'}} onClick={() => navigate('/')}>MyPet</p>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <li><hr class="dropdown-divider" /></li>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">My profile</a>
+                    <li style={{margin: '0rem 0.2rem' , cursor: 'pointer'}} class="nav-item">
+                        <p style={{marginTop : "0.5rem"}} onClick={() => navigate('/my-profile')}>My profile</p>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Contact</a>
+                    <li style={{margin: '0rem 0.2rem' , cursor: 'pointer'}} class="nav-item">
+                        <p style={{marginTop : "0.5rem"}} onClick={() => navigate('/contact')}>Contact</p>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li style={{margin: '0rem 0.2rem' , cursor: 'pointer'}} class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Categories
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Services</a></li>
+                            <li>
+                        <p class="dropdown-item" style={{marginTop : "0.5rem"}} onClick={() => navigate('/service')}>Service</p>
+                            </li>
                             <li><hr class="dropdown-divider" /></li>
                             <li><a class="dropdown-item" href="#">pet adoption</a></li>
                             <li><hr class="dropdown-divider" /></li>
@@ -40,17 +45,19 @@ const Header =
                 </form>
 
                 <ul class="navbar-nav ">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="SingUp" href="#">Sign up</a>
+                <li style={{margin: '0rem 0.2rem' , cursor: 'pointer'}} class="nav-item">
+                        <p style={{marginTop : "0.5rem"}} onClick={() => navigate('/sign-up')}>Sign up</p>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="LogIn" href="#">LogIn</a>
+                <li style={{margin: '0rem 0.2rem' , cursor: 'pointer'}} class="nav-item">
+                        <p style={{marginTop : "0.5rem"}} onClick={() => navigate('/login')}>LogIn</p>
                     </li>
                 </ul>
             </div>
         </div>
         
-    </nav>;
+    </nav>
+    )
+}
 
 
 
