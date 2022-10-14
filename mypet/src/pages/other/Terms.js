@@ -7,17 +7,14 @@ function Terms(props) {
         let resp = await Utils.getAll("")
         console.log(resp);
         console.log(resp.data);
-      }
+    }
 
     return (
         <div>
-<<<<<<< HEAD
+            <input type="button" value="Users" onClick={getData} /> <br /><br /><br /><br /><br />
 
             <h5>ACCEPTANCE OF TERMS</h5>
-=======
-<input type="button" value="Users" onClick={getData}/> <br/><br/><br/><br/><br/>
-            ACCEPTANCE OF TERMS
->>>>>>> 66d8269283a863433b292ea0ec4070a71c455e67
+
             By accessing or using of any of our Services,<br />
             including browsing our website (MyPet.com), <br />
             you accept these Terms. If you do not agree with the Terms,<br />
