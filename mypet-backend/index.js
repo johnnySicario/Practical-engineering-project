@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const keys = require("./config/keys");
+const usersController = require("./controllers/usersController");
 const contactController = require("./controllers/contactController");
 const authenticationController = require("./controllers/authentication");
 // const upload = require("./models/imageBL");
@@ -22,7 +23,9 @@ const cors = require('cors');
 app.use(morgan('combined'));
 app.use(cors());
 app.use(bodyParser.json({ type: '*/*' }));
-
+app.use(express.urlencoded({extended: true}));
+app.use(express.json());
+app.use(bodyParser.urlencoded({extended:true})).use(bodyParser.json())
 // connect with mongo db
 mongoose.connect(
   keys.mongoURI,
@@ -45,6 +48,7 @@ app.use(passport.session());
 /* ================ Creating Cookie Key and link with Passport JS: End ================  */
 
 require("./routes/authRoute")(app);
+app.use('/users', usersController)
 app.use('/contact', contactController)
 app.use('/authentication', authenticationController)
 // app.use('/upload',upload)

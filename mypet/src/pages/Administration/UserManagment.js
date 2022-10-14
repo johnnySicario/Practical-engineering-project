@@ -5,10 +5,10 @@ function UserManagment(props) {
     return (
         <div>
             <div class="btn-group" role="group" aria-label="Default button group">
-  <button type="button" class="btn btn-outline-dark">add</button>
-  <button type="button" class="btn btn-outline-dark">delete</button>
-  <button type="button" class="btn btn-outline-dark">update</button>
-</div>
+                <button type="button" class="btn btn-outline-dark">add</button>
+                <button type="button" class="btn btn-outline-dark">delete</button>
+                <button type="button" class="btn btn-outline-dark">update</button>
+            </div>
             <table class="table">
                 <thead>
                     <tr>
