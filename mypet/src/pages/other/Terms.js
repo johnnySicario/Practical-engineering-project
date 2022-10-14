@@ -11,8 +11,7 @@ function Terms(props) {
 
     return (
         <div>
-            <input type="button" value="Users" onClick={getData} /> <br /><br /><br /><br /><br />
-
+            
             <h5>ACCEPTANCE OF TERMS</h5>
 
             By accessing or using of any of our Services,<br />
