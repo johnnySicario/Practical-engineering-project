@@ -27,7 +27,7 @@ const Header = () => {
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                        <p class="dropdown-item" style={{marginTop : "0.5rem"}} onClick={() => navigate('/service')}>Service</p>
+                        <p class="dropdown-item" style={{marginTop : "0.5rem"}} onClick={() => navigate('/service')}>Services</p>
                             </li>
                             <li><hr class="dropdown-divider" /></li>
                             <li><a class="dropdown-item" href="#">pet adoption</a></li>

@@ -16,23 +16,24 @@ const Footer = () => {
       <footer class="py-10">
         <div class="row">
           <div class="col-6 col-md-2 mb-3">
-            <h5>Section</h5>
+            <h5>About Mypet</h5>
             <ul class="nav flex-column">
-              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
+              <li style={{cursor : "pointer"}} class="nav-item mb-2"><a onClick={() => navigate('/HomePage')} class="nav-link p-0 text-muted">Home</a></li>
               <li style={{cursor : "pointer"}} class="nav-item mb-2"><a onClick={() => navigate('/terms')} class="nav-link p-0 text-muted">Terms of service</a></li>
-              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
-              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
+              <li style={{cursor : "pointer"}} class="nav-item mb-2"><a onClick={() => navigate('/FAQs')} class="nav-link p-0 text-muted">FAQs</a></li>
+              <li style={{cursor : "pointer"}} class="nav-item mb-2"><a onClick={() => navigate('/Contact')} class="nav-link p-0 text-muted">Contact us</a></li>
+              <li style={{cursor : "pointer"}} class="nav-item mb-2"><a onClick={() => navigate('/About')} class="nav-link p-0 text-muted">About</a></li>
             </ul>
           </div>
 
           <div class="col-6 col-md-2 mb-3">
             <h5>Section</h5>
             <ul class="nav flex-column">
-              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pet adoption</a></li>
               <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
               <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
-              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
-              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted"></a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted"></a></li>
             </ul>
           </div>
 

@@ -13,6 +13,9 @@ import UserProfile from '../profile/UserProfile.js';
 import Terms from '../other/Terms.js';
 import Header from '../site/Header.js';
 import Footer from '../site/Footer.js';
+import About from '../other/About';
+import FAQs from '../other/FAQs';
+
 
 const MainPageComp = () => {
 
@@ -26,7 +29,10 @@ const MainPageComp = () => {
                 <Route path='/contact' element={<Contact/>}/>
                 <Route path='/service' element={<TableServices/>}/>
                 <Route path='/my-profile' element={<UserProfile/>}/>
-                <Route path='/terms' element={<Terms/>}/>    
+                <Route path='/terms' element={<Terms/>}/>   
+                <Route path='/About' element={<About/>}/>  
+                <Route path='/HomePage' element={<HomePageComp/>}/> 
+                <Route path='/FAQs' element={<FAQs/>}/> 
             </Routes>
         <Footer/>
         </>

@@ -3,6 +3,7 @@ import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import './slider.css'
 import sliderData from './sliderData'
 
+
 const HomePageComp = () => {
 
     const [currentSlide, setCurrentSlide] = useState(0);
