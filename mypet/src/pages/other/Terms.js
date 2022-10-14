@@ -1,9 +1,17 @@
 import React from 'react';
+import Utils from '../../utils/utilsUser'
 
 function Terms(props) {
+
+    const getData = async () => {
+        let resp = await Utils.getAll("")
+        console.log(resp);
+        console.log(resp.data);
+      }
+
     return (
         <div>
-
+<input type="button" value="Users" onClick={getData}/> <br/><br/><br/><br/><br/>
             ACCEPTANCE OF TERMS
             By accessing or using of any of our Services,<br />
             including browsing our website (MyPet.com), <br />

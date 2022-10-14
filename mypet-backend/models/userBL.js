@@ -1,9 +1,9 @@
-var Contact = require('./contactSchema')
+// var Contact = require('./contactSchema')
 var User = require('./userSchema')
 
 var getAllUsers = () => {
     return new Promise((resolve, reject) => {
-        Contact.find({}, (err, data) => {
+        User.find({}, (err, data) => {
             if (err) {
                 reject(err)
             }
@@ -16,7 +16,7 @@ var getAllUsers = () => {
 
 var getUserById = (userId) => {
     return new Promise((resolve, reject) => {
-        Contact.findById(userId, (err, data) => {
+        User.findById(userId, (err, data) => {
             if (err) {
                 reject(err)
             }
@@ -56,7 +56,7 @@ var addUser = (newUser, social) => {
             })
         }
 
-        user.save((err) => {
+        User.save((err) => {
             if (err) {
                 reject(err)
             }
