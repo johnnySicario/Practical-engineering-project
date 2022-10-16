@@ -30,11 +30,11 @@ const Header = () => {
                         <p class="dropdown-item" style={{marginTop : "0.5rem"}} onClick={() => navigate('/service')}>Services</p>
                             </li>
                             <li><hr class="dropdown-divider" /></li>
-                            <li><a class="dropdown-item" href="#">pet adoption</a></li>
+                            <li><p class="dropdown-item" style={{marginTop : "0.5rem"}} onClick={() => navigate('/Publication')}>Pet adoption</p></li>
                             <li><hr class="dropdown-divider" /></li>
-                            <li><a class="dropdown-item" href="#">blog</a></li>
+                            <li><a class="dropdown-item" href="#">Blog</a></li>
                             <li><hr class="dropdown-divider" /></li>
-                            <li><a class="dropdown-item" href="#">health & wellness</a></li>
+                            <li><a class="dropdown-item" style={{marginTop : "0.5rem"}} onClick={() => navigate('/PetBreed')}>Pets breed</a></li>
                         </ul>
                     </li>
 

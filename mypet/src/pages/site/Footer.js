@@ -29,8 +29,8 @@ const Footer = () => {
           <div class="col-6 col-md-2 mb-3">
             <h5>Section</h5>
             <ul class="nav flex-column">
-              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pet adoption</a></li>
-              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
+              <li style={{cursor : "pointer"}} class="nav-item mb-2"><a onClick={() => navigate('/Publication')} class="nav-link p-0 text-muted">Pet adoption</a></li>
+              <li style={{cursor : "pointer"}} class="nav-item mb-2"><a onClick={() => navigate('/Service')} class="nav-link p-0 text-muted">Services</a></li>
               <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
               <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted"></a></li>
               <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted"></a></li>

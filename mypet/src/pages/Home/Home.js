@@ -15,6 +15,9 @@ import Header from '../site/Header.js';
 import Footer from '../site/Footer.js';
 import About from '../other/About';
 import FAQs from '../other/FAQs';
+import AddPublication from '../Services/AddPublication.js';
+import PetBreed from '../Services/PetBreed';
+
 
 
 const MainPageComp = () => {
@@ -33,6 +36,9 @@ const MainPageComp = () => {
                 <Route path='/About' element={<About/>}/>  
                 <Route path='/HomePage' element={<HomePageComp/>}/> 
                 <Route path='/FAQs' element={<FAQs/>}/> 
+                <Route path='/Publication' element={<Publication/>}/> 
+                <Route path='/AddPublication' element={<AddPublication/>}/> 
+                <Route path='/PetBreed' element={<PetBreed/>}/> 
             </Routes>
         <Footer/>
         </>
