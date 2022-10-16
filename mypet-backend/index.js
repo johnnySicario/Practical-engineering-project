@@ -26,6 +26,7 @@ app.use(bodyParser.json({ type: '*/*' }));
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended:true})).use(bodyParser.json())
+
 // connect with mongo db
 mongoose.connect(
   keys.mongoURI,

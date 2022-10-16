@@ -1,18 +1,33 @@
+import Utils from '../../utils/utilsUser'
+import axios from 'axios'
+
 const initialState = {
-    users : [],
-    usersLoading : false
+    users: [],
+    usersLoading: false
 }
 
-const usersReduces = (state = initialState , action) => {
-    switch(action.type) {
-        case 'GET_USERS' :
-            state = { ...state , users : action.payload }
-        return state
-        case  'SET_USERS_LOADING' :
-            state = { ...state, usersLoading : action.payload }
+const getData = async (user) => {
+    let resp = await axios.post("",user)
+    console.log(resp);
+    console.log(resp.data);
+}
+
+
+const usersReduces = (state = initialState, action) => {
+    switch (action.type) {
+        case 'GET_USERS':
+            state = { ...state, users: action.payload }
             return state
-    default :
-        return state;
+        case 'GET_USER':
+            console.log(action.payload)
+
+            state = { ...state, users: action.payload }
+            return state
+        case 'SET_USERS_LOADING':
+            state = { ...state, usersLoading: action.payload }
+            return state
+        default:
+            return state;
     }
 }
 

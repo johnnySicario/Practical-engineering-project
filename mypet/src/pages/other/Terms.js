@@ -1,13 +1,8 @@
 import React from 'react';
-import Utils from '../../utils/utilsUser'
 
 function Terms(props) {
 
-    const getData = async () => {
-        let resp = await Utils.getAll("")
-        console.log(resp);
-        console.log(resp.data);
-    }
+
 
     return (
         <div>
