@@ -3,6 +3,8 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import utils from '../../utils/authenticationUtils';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { getSignUp } from '../../redux/actions/getAuthActions';
 
 const SignUp = () => {
   const [email, setEmail] = useState('')
@@ -11,6 +13,7 @@ const SignUp = () => {
   const [password2, setPassword2] = useState(null)
   const [passwordsNotMatch, setPasswordsNotMatch] = useState(false)
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const checkEmpty = () => {
@@ -28,11 +31,9 @@ const SignUp = () => {
   const signUp = async (e) => {
     e.preventDefault();
     let obj = { email , username , password }
-    console.log(obj)
-    // let resp = await utils.singupUser(obj)
+    dispatch(getSignUp(obj))
   }
 
-  let disabled = email === "" || username === "" || password === "" || password2 === "" || password !== password2 ? true : false
 
   return (
     <div>
@@ -47,7 +48,7 @@ const SignUp = () => {
 
         <Form.Group className="mb-3" controlId="formBasicUserName">
           <Form.Label>Username</Form.Label>
-          <Form.Control type="text" ext placeholder="Enter username" required onChange={(e) => setUserName(e.target.value)} />
+          <Form.Control type="text" placeholder="Enter username" required onChange={(e) => setUserName(e.target.value)} />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -61,7 +62,7 @@ const SignUp = () => {
         </Form.Group>
         {passwordsNotMatch && <span style={{color : 'red'}}>The passwords not match</span>}
         <p>Do you have a user? <span style={{textDecoration: 'underline', cursor: 'pointer'}} onClick={() => navigate('/login')}>Go to login</span></p>
-        <Button disabled={disabled} variant="primary" type="submit " onClick={signUp}>
+        <Button disabled={email === "" || username === "" || password === "" || password2 === "" || password !== password2 ? true : false} variant="primary" type="submit " onClick={signUp}>
           Submit
         </Button>
       </Form>
