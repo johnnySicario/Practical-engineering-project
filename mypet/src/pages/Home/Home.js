@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import UserManagment from '../Administration/UserManagment.js';
 import Contact from '../other/Contact.js';
 import Main from '../Administration/User-management/Main/main.js';
@@ -19,6 +19,8 @@ import AddPublication from '../Services/AddPublication.js';
 import PetBreed from '../Services/PetBreed';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserLoading } from '../../redux/actions/getAuthActions.js';
+import { ToastContainer } from "react-toastify";  
+import 'react-toastify/dist/ReactToastify.css';
 
 const MainPageComp = () => {
     const token = useSelector(state => state.auth.token)
@@ -31,6 +33,7 @@ const MainPageComp = () => {
     return (
         <>
       {token ? <Header/> : null}
+      <ToastContainer autoClose={2000}/>
             <Routes>
                 <Route path='/' element={token ? <HomePageComp /> : <Navigate to="/login"/> } />
                 <Route path='/sign-up' element={token ? <Navigate to="/"/> : <SignUp />} />
