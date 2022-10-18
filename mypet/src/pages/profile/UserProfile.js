@@ -21,7 +21,7 @@ function UserProfile() {
       }
     },[photo])
 
-    console.log(photoSize);
+    // console.log(photoSize);
 
     const handleFileInputChange = data => {
         if(data.file) {
@@ -31,7 +31,7 @@ function UserProfile() {
           setPhoto({url : reader.result , file : data.file})
         };
         reader.onerror = (error) => {
-          console.log('Error: ', error);
+          // console.log('Error: ', error);
         };
         } else {
           setPhoto(null);
@@ -41,7 +41,7 @@ function UserProfile() {
       const hadleSubmitForm = (e) => {
         e.preventDefault();
         let data = { fName , lName ,phoneNumber , email , age , pet , photo }
-        console.log(data);
+        // console.log(data);
       }
 
       let options = []

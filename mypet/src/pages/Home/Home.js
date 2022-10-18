@@ -21,18 +21,30 @@ import useToken from '../../utils/useToken';
 
 const MainPageComp = () => {
     const { token, setToken } = useToken();
-    
-    if (!token) {
-        return <LogIn setTokenCheck={setToken} />
-    }
+
+    useEffect(() => {
+        const checkToken = () => {
+            if (!token) {
+                return (
+                    <>
+                        <Header />
+                        <LogIn setTokenCheck={setToken} />
+                        <Footer />
+                    </>
+                )
+            }
+        }
+
+        checkToken();
+    }, [])
 
     return (
         <>
-      <Header/>
+            <Header />
             <Routes>
-                <Route path='/' element={<HomePageComp />} />
+                <Route path='/login' element={<LogIn setTokenCheck={setToken} />} />
+                <Route path='/home' element={<HomePageComp />} />
                 <Route path='/sign-up' element={<SignUp />} />
-                <Route path='/login' element={<LogIn />} />
                 <Route path='/contact' element={<Contact />} />
                 <Route path='/service' element={<TableServices />} />
                 <Route path='/my-profile' element={<UserProfile />} />

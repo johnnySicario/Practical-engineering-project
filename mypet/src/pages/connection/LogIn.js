@@ -3,17 +3,22 @@ import './LogIn.css';
 import { connect } from "react-redux";
 import PropTypes from 'prop-types';
 import utils from './../../utils/authenticationUtils'
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import { useNavigate } from 'react-router-dom';
 
 function LogIn({ setTokenCheck }) {
     const [user, setUser] = useState([{}]);
+    const navigate = useNavigate()
 
     const login = async (e) => {
-        console.log("login")
         e.preventDefault();
         let obj = { ...user };
 
         let resp = await utils.loginUser(obj);
         setTokenCheck(resp.data.token);
+
+        navigate('/home')
     }
 
     return (
