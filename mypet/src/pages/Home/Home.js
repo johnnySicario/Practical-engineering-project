@@ -28,9 +28,6 @@ const MainPageComp = () => {
         return <LogIn setTokenCheck={setToken} />
     }
 
-        checkToken();
-    }, [])
-
     return (
         <>
       <Header/>
