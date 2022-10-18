@@ -3,23 +3,16 @@ import './LogIn.css';
 import { connect, useDispatch } from "react-redux";
 import PropTypes from 'prop-types';
 import utils from './../../utils/authenticationUtils'
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import { getLoginAction } from '../../redux/actions/getUsersActions';
 
 function LogIn({ setTokenCheck }) {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const dispatch = useDispatch()
+    const [user, setUser] = useState([{}]);
 
     const login = async (e) => {
-        console.log("login")
         e.preventDefault();
         let obj = { email , password };
 
-        // let resp = await utils.loginUser(obj);
-        dispatch(getLoginAction(obj))
-        // setTokenCheck(resp.data.token);
+        let resp = await utils.loginUser(obj);
+        setTokenCheck(resp.data.token);
     }
 
     return (

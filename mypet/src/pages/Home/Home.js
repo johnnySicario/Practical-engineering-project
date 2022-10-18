@@ -22,21 +22,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getUserLoading } from '../../redux/actions/getUsersActions.js';
 
 const MainPageComp = () => {
-    const dispatch = useDispatch()
-    const token = useSelector(state => state.users.token)
+    const { token, setToken } = useToken();
+    
+    if (!token) {
+        return <LogIn setTokenCheck={setToken} />
+    }
 
-    console.log(token);
-    useEffect(() => {
-        dispatch(getUserLoading())
-    },[dispatch])
+        checkToken();
+    }, [])
 
     return (
         <>
-      { token ? <Header/> : null}
+      <Header/>
             <Routes>
-                <Route path='/' element={token ? <HomePageComp /> : <Navigate to="/login"/>} />
+                <Route path='/' element={<HomePageComp />} />
                 <Route path='/sign-up' element={<SignUp />} />
-                <Route path='/login' element={<LogIn />} />
                 <Route path='/contact' element={<Contact />} />
                 <Route path='/service' element={<TableServices />} />
                 <Route path='/my-profile' element={<UserProfile />} />
