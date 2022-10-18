@@ -11,29 +11,31 @@ function LogIn({ setTokenCheck }) {
         console.log("login")
         e.preventDefault();
         let obj = { ...user };
-        
+
         let resp = await utils.loginUser(obj);
         setTokenCheck(resp.data.token);
     }
 
     return (
         <div className="firstDiv">
-            <form>
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" onChange={e => setUser({ ...user, email: e.target.value })} />
-                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" onChange={e => setUser({ ...user, password: e.target.value })} />
-                </div>
-                <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                </div>
-                <button type="submit" class="btn btn-primary" onClick={login}>Submit</button>
-            </form>
+            <Form>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>Email address</Form.Label>
+                    <Form.Control type="email" placeholder="Enter email" required onChange={e => setUser({ ...user, email: e.target.value })} />
+                    <Form.Text className="text-muted">
+                        We'll never share your email with anyone else.
+                    </Form.Text>
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control type="password" placeholder="Password" required onChange={e => setUser({ ...user, password: e.target.value })} />
+                </Form.Group>
+
+                <Button variant="primary" type="button">
+                    click!
+                </Button>
+            </Form>
         </div>
     );
 }
