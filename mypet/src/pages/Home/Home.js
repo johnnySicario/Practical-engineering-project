@@ -19,31 +19,34 @@ import AddPublication from '../Services/AddPublication.js';
 import PetBreed from '../Services/PetBreed';
 import useToken from '../../utils/useToken';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserLoading } from '../../redux/actions/getUsersActions.js';
+import { getUserLoading } from '../../redux/actions/getAuthActions.js';
 
 const MainPageComp = () => {
-    const { token, setToken } = useToken();
-    
-    if (!token) {
-        return <LogIn setTokenCheck={setToken} />
-    }
+    const token = useSelector(state => state.users.token)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getUserLoading())
+    })
+
+    console.log(token);
 
     return (
         <>
-      <Header/>
+      {token ? <Header/> : null}
             <Routes>
-                <Route path='/' element={<HomePageComp />} />
-                <Route path='/sign-up' element={<SignUp />} />
-                <Route path='/contact' element={<Contact />} />
-                <Route path='/service' element={<TableServices />} />
-                <Route path='/my-profile' element={<UserProfile />} />
-                <Route path='/terms' element={<Terms />} />
-                <Route path='/About' element={<About />} />
-                <Route path='/HomePage' element={<HomePageComp />} />
-                <Route path='/FAQs' element={<FAQs />} />
-                <Route path='/Publication' element={<Publication />} />
-                <Route path='/AddPublication' element={<AddPublication />} />
-                <Route path='/PetBreed' element={<PetBreed />} />
+                <Route path='/' element={token ? <HomePageComp /> : <Navigate to="/login"/> } />
+                <Route path='/sign-up' element={token ? <Navigate to="/"/> : <SignUp />} />
+                <Route path='/login' element={token ? <Navigate to="/"/> : <LogIn />} />
+                <Route path='/contact' element={token ? <Contact /> : <Navigate to="/login"/>} />
+                <Route path='/service' element={token ? <TableServices /> : <Navigate to="/login"/>} />
+                <Route path='/my-profile' element={token ? <UserProfile /> : <Navigate to="/login"/>} />
+                <Route path='/terms' element={token ? <Terms /> : <Navigate to="/login"/>} />
+                <Route path='/About' element={token ? <About /> : <Navigate to="/login"/>} />
+                <Route path='/FAQs' element={token ? <FAQs /> : <Navigate to="/login"/>} />
+                <Route path='/Publication' element={token ? <Publication /> : <Navigate to="/login"/>} />
+                <Route path='/AddPublication' element={token ? <AddPublication /> : <Navigate to="/login"/>} />
+                <Route path='/PetBreed' element={token ? <PetBreed /> : <Navigate to="/login"/>} />
             </Routes>
             { token ? <Footer /> : null}
         </>

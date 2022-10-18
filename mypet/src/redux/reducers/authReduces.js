@@ -1,13 +1,12 @@
 import jwtDecode from 'jwt-decode'
 
 const initialState = {
-    users: [],
     token : localStorage.getItem('token'),
-    usersLoading: false
+    authLoading: false
 }
 
 
-const usersReduces = (state = initialState, action) => {
+const authReduces = (state = initialState, action) => {
     switch (action.type) {
         case 'GET_LOGIN':
             // Take the user details
@@ -17,12 +16,12 @@ const usersReduces = (state = initialState, action) => {
         case 'LOAD_USER_AUTH':
             state = { ...state, token: action.payload }
             return state
-        case 'SET_USERS_LOADING':
-            state = { ...state, usersLoading: action.payload }
+        case 'SET_AUTH_LOADING':
+            state = { ...state, authLoading: action.payload }
             return state
         default:
             return state;
     }
 }
 
-export default usersReduces
+export default authReduces

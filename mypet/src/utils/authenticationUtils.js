@@ -11,7 +11,7 @@ const loginUser = (obj) =>{
 const exportedObject = {
     singupUser,
     loginUser,
-    logOutUser
+    // logOutUser
 };
 
 export default exportedObject

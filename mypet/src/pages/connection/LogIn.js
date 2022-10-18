@@ -1,19 +1,25 @@
 import React, { useState } from 'react';
 import './LogIn.css';
-import { connect, useDispatch } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import PropTypes from 'prop-types';
 import utils from './../../utils/authenticationUtils'
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import { getAuthAction } from '../../redux/actions/getAuthActions';
 
-function LogIn({ setTokenCheck }) {
-    const [user, setUser] = useState([{}]);
+const LogIn = () => {
+    const dispatch = useDispatch()
+    const usersLoading = useSelector(state => state.users.usersLoading)
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
 
     const login = async (e) => {
         e.preventDefault();
         let obj = { email , password };
-
-        let resp = await utils.loginUser(obj);
-        setTokenCheck(resp.data.token);
+        dispatch(getAuthAction(obj))
     }
+
+    console.log(usersLoading)
 
     return (
         <div className="firstDiv">
@@ -32,15 +38,11 @@ function LogIn({ setTokenCheck }) {
                 </Form.Group>
 
                 <Button variant="primary" type="submit" onClick={login}>
-                    click!
+                    Login
                 </Button>
             </Form>
         </div>
     );
-}
-
-LogIn.propTypes = {
-    setTokenCheck: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => {

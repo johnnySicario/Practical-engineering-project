@@ -1,7 +1,7 @@
 import axios from 'axios'
 import exportedObject from '../../utils/authenticationUtils'
 
-export const getLoginAction = (data) => async (dispatch) => {
+export const getAuthAction = (data) => async (dispatch) => {
     dispatch({ type : 'SET_USERS_LOADING' , payload : true })
     exportedObject.loginUser(data).then(resp => {
         localStorage.setItem('token' , JSON.stringify( resp.data.token))
