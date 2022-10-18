@@ -1,4 +1,3 @@
-import axios from 'axios'
 import exportedObject from '../../utils/authenticationUtils'
 
 export const getAuthAction = (data) => async (dispatch) => {
@@ -27,3 +26,5 @@ export const getLogOut = () => async (dispatch) => {
     dispatch({ type : 'LOGOUT_AUTH' })
     dispatch({ type : 'SET_USERS_LOADING' , payload : false })
 }
+
+
