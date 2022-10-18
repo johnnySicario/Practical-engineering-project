@@ -16,6 +16,9 @@ const authReduces = (state = initialState, action) => {
         case 'LOAD_USER_AUTH':
             state = { ...state, token: action.payload }
             return state
+        case 'LOGOUT_AUTH':
+            state = { ...state, token: null }
+            return state
         case 'SET_AUTH_LOADING':
             state = { ...state, authLoading: action.payload }
             return state

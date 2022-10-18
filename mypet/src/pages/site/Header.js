@@ -5,14 +5,16 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Nav from 'react-bootstrap/Nav';
 import useToken from '../../utils/useToken';
 import utils from '../../utils/authenticationUtils';
+import { useDispatch, useSelector } from 'react-redux';
+import { getLogOut } from '../../redux/actions/getAuthActions';
 
 const Header = () => {
     const navigate = useNavigate()
-    const { token, setToken } = useToken();
+    const token = useSelector(state => state.auth.token)
+    const dispatch = useDispatch()
 
-    const logOut = async () => {
-        utils.logOutUser()
-        navigate('/login')
+    const logOut = () => {
+        dispatch(getLogOut())
     }
 
     return (
@@ -44,7 +46,7 @@ const Header = () => {
                     </form>
 
                     <ul className="navbar-nav ">
-                        {token ? <>
+                        {token === null ? <>
                             <Nav.Item>
                                 <Nav.Link eventKey="1" onClick={() => navigate('/sign-up')}>
                                     Sign up
@@ -58,7 +60,7 @@ const Header = () => {
                         </> : <>
                             <Nav.Item>
                                 <Nav.Link eventKey="1" onClick={logOut}>
-                                    log out
+                                    Log Out
                                 </Nav.Link>
                             </Nav.Item>
                         </>}

@@ -22,5 +22,8 @@ export const getUserLoading = () => async (dispatch , getState) => {
 }
 
 export const getLogOut = () => async (dispatch) => {
-    
+    dispatch({ type : 'SET_USERS_LOADING' , payload : true })
+    localStorage.removeItem('token')
+    dispatch({ type : 'LOGOUT_AUTH' })
+    dispatch({ type : 'SET_USERS_LOADING' , payload : false })
 }
