@@ -1,8 +1,8 @@
-var Contact = require('./contactSchema')
+var service = require('./serviceSchema')
 
-var getAllContacts = () => {
+var getAllServices = () => {
     return new Promise((resolve, reject) => {
-        Contact.find({}, (err, data) => {
+        service.find({}, (err, data) => {
             if (err) {
                 reject(err)
             }
@@ -13,9 +13,9 @@ var getAllContacts = () => {
     })
 }
 
-var getContactById = (contactId) => {
+var getServiceById = (serviceId) => {
     return new Promise((resolve, reject) => {
-        Contact.findById(contactId, (err, data) => {
+        service.findById(serviceId, (err, data) => {
             if (err) {
                 reject(err)
             }
@@ -26,37 +26,40 @@ var getContactById = (contactId) => {
     })
 }
 
-var addContact = (newContact) => {
+
+
+var addService = (newService) => {
     return new Promise((resolve, reject) => {
 
-        var contact = new Contact({
-            name: newContact.name,
-            mail: newContact.mail,
-            massage: newContact.massage
+        const service = new service({
+            name: newService.name,
+            mail: newService.mail,
+            massage: newService.massage
         })
-        contact.save((err) => {
+
+        service.save((err) => {
             if (err) {
                 reject(err)
             }
             else {
-                resolve(contact)
+                resolve(newService)
             }
         })
     })
 }
 
 
-var deleteContact = (contactId) => {
+var deleteService = (serviceId) => {
     return new Promise((resolve, reject) => {
-        Contact.findByIdAndDelete(contactId, (err) => {
+        service.findByIdAndDelete(serviceId, (err) => {
             if (err) {
                 reject(err)
             }
             else {
-                resolve("Contact deleted!!!")
+                resolve("service deleted!!!")
             }
         })
     })
 }
 
-module.exports = { getAllContacts, getContactById, addContact, deleteContact }
+module.exports = { getAllServices, getServiceById, addService, deleteService }
