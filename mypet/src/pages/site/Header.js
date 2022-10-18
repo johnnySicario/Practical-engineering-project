@@ -1,42 +1,34 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import Dropdown from 'react-bootstrap/Dropdown';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import Nav from 'react-bootstrap/Nav';
+
 
 const Header = () => {
     const navigate = useNavigate()
 
     return (
-        <nav class="navbar navbar-expand-lg bg-light">
+        <Nav class="navbar navbar-expand-lg bg-light"  style={{marginBottom : "4rem"}}>
         <div class="container-fluid">
             <p style={{marginTop : "0.5rem" , marginRight: '0.5rem' , fontSize : '1.2rem'}} onClick={() => navigate('/')}>MyPet</p>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-                    <li style={{margin: '0rem 0.2rem' , cursor: 'pointer'}} class="nav-item">
-                        <p style={{marginTop : "0.5rem"}} onClick={() => navigate('/my-profile')}>My profile</p>
-                    </li>
-
-                    <li style={{margin: '0rem 0.2rem' , cursor: 'pointer'}} class="nav-item">
-                        <p style={{marginTop : "0.5rem"}} onClick={() => navigate('/contact')}>Contact</p>
-                    </li>
-                    <li style={{margin: '0rem 0.2rem' , cursor: 'pointer'}} class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Categories
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                        <p class="dropdown-item" style={{marginTop : "0.5rem"}} onClick={() => navigate('/service')}>Services</p>
-                            </li>
-                            <li><hr class="dropdown-divider" /></li>
-                            <li><p class="dropdown-item" style={{marginTop : "0.5rem"}} onClick={() => navigate('/Publication')}>Pet adoption</p></li>
-                            <li><hr class="dropdown-divider" /></li>
-                            <li><a class="dropdown-item" href="#">Blog</a></li>
-                            <li><hr class="dropdown-divider" /></li>
-                            <li><a class="dropdown-item" style={{marginTop : "0.5rem"}} onClick={() => navigate('/PetBreed')}>Pets breed</a></li>
-                        </ul>
-                    </li>
+        <Nav.Item>
+        <Nav.Link eventKey="1" onClick={() => navigate('/my-profile')}>
+        My profile
+        </Nav.Link>
+      </Nav.Item>
+        <Nav.Item>
+        <Nav.Link eventKey="1" onClick={() => navigate('/contact')}>
+        Contact
+        </Nav.Link>
+      </Nav.Item>
+                    <NavDropdown title="Dropdown" id="nav-dropdown">
+        <NavDropdown.Item onClick={() => navigate('/service')}>Services</NavDropdown.Item>
+        <NavDropdown.Item  onClick={() => navigate('/Publication')}>Pet adoption</NavDropdown.Item>
+        <NavDropdown.Item onClick={() => navigate('/PetBreed')}>Pets breed</NavDropdown.Item>
+      </NavDropdown>
 
                 </ul>
                 <form class="d-flex" role="search">
@@ -45,17 +37,21 @@ const Header = () => {
                 </form>
 
                 <ul class="navbar-nav ">
-                <li style={{margin: '0rem 0.2rem' , cursor: 'pointer'}} class="nav-item">
-                        <p style={{marginTop : "0.5rem"}} onClick={() => navigate('/sign-up')}>Sign up</p>
-                    </li>
-                <li style={{margin: '0rem 0.2rem' , cursor: 'pointer'}} class="nav-item">
-                        <p style={{marginTop : "0.5rem"}} onClick={() => navigate('/login')}>LogIn</p>
-                    </li>
+                    <Nav.Item>
+                    <Nav.Link eventKey="1" onClick={() => navigate('/sign-up')}>
+                    Sign up
+                    </Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                    <Nav.Link eventKey="1" onClick={() => navigate('/login')}>
+                    Log In
+                    </Nav.Link>
+                    </Nav.Item>
                 </ul>
             </div>
         </div>
         
-    </nav>
+    </Nav>
     )
 }
 

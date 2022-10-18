@@ -28,7 +28,7 @@ const MainPageComp = () => {
 
     return (
         <>
-            <Header />
+      <Header/>
             <Routes>
                 <Route path='/' element={<HomePageComp />} />
                 <Route path='/sign-up' element={<SignUp />} />

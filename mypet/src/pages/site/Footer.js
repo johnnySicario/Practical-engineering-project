@@ -7,7 +7,7 @@ const Footer = () => {
 
 
   return (
-    <div>
+    <div style={{marginTop : "4rem"}}>
     <div class="p-0 bg-success bg-opacity-5 border-info rounded-end rounded-start boundary">
       MyPet, because we care
     </div>

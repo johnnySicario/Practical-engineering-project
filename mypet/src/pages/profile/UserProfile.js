@@ -88,8 +88,8 @@ function UserProfile() {
         <Form.Control aria-describedby="inputGroup-sizing-default" type='text' required onChange={(e) => setPet(e.target.value)}/>
       </Form.Group>
         <Form.Group className="input-group mb-3">
-          <Form.Label className="input-group-text">Upload your pet</Form.Label>
-            <Form.Control hidden required type="file" onChange={e => handleFileInputChange({ file : e.target.files[0] })} accept="image/*"/>
+          <Form.Label className="input-group-text" htmlFor='AddPicId'>Upload your pet</Form.Label>
+            <Form.Control hidden required type="file" id='AddPicId' onChange={e => handleFileInputChange({ file : e.target.files[0] })} accept="image/*"/>
             <span>{!photo ? null : photo?.file?.name}</span>
         </Form.Group>
   <div><span style={photoSize ? {color : "red"} : { color : 'green' }}>The image should be up to 1MB</span></div>

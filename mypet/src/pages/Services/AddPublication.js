@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import React, { useEffect } from 'react';
-
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 function AddPublication(props) {
     const [photo, setPhoto] = useState(null)
@@ -35,8 +36,6 @@ function AddPublication(props) {
         }
     };
 
-
-
     return (
         <div>
             <div class="input-group mb-3">
@@ -49,13 +48,13 @@ function AddPublication(props) {
                 <span class="input-group-text">Message</span>
                 <textarea onChange={ (e) => setMessage(e.target.value)} class="form-control" aria-label="With textarea"></textarea>
             </div>
-
-            <div className="input-group mb-3">
-                <label className="input-group-text" for="inputGroupFile01">Upload your pet</label>
-                <input required type="file" className="form-control" id="inputGroupFile01" onChange={e => handleFileInputChange({ file: e.target.files[0] })} accept="image/*" />
-            </div>
+            <Form.Group className="input-group mb-3">
+          <Form.Label className="input-group-text" htmlFor='AddPicId'>Upload your pet</Form.Label>
+            <Form.Control multiple  hidden required type="file" id='AddPicId' onChange={e => handleFileInputChange({ file : e.target.files[0] })} accept="image/*"/>
+            <span>{!photo ? null : photo?.file?.name} {console.log(photo)}</span>
+        </Form.Group>
             <div><span style={photoSize ? { color: "red" } : { color: 'green' }}>The image should be up to 1MB</span></div>
-            <button disabled={UserName === "" || Title === "" ||Message === "" || photo === null || photoSize ? true : false} onClick={hadleSubmitForm} type="submit" className="btn btn-primary">Submit</button>
+            <Button disabled={UserName === "" || Title === "" ||Message === "" || photo === null || photoSize ? true : false} onClick={hadleSubmitForm} type="submit" className="btn btn-primary">Submit</Button>
         </div>
     );
 }
