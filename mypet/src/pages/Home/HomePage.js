@@ -4,9 +4,11 @@ import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import './slider.css'
 import sliderData from './sliderData'
 import Button from 'react-bootstrap/esm/Button';
+import { useSelector } from 'react-redux';
 
 
 const HomePageComp = () => {
+  const token = useSelector(state => state.users)
 
     const [currentSlide, setCurrentSlide] = useState(0);
     const slideLength = sliderData.length;

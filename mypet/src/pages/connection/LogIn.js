@@ -1,27 +1,33 @@
 import React, { useState } from 'react';
 import './LogIn.css';
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import PropTypes from 'prop-types';
 import utils from './../../utils/authenticationUtils'
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import { getLoginAction } from '../../redux/actions/getUsersActions';
 
 function LogIn({ setTokenCheck }) {
-    const [user, setUser] = useState([{}]);
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const dispatch = useDispatch()
 
     const login = async (e) => {
         console.log("login")
         e.preventDefault();
-        let obj = { ...user };
+        let obj = { email , password };
 
-        let resp = await utils.loginUser(obj);
-        setTokenCheck(resp.data.token);
+        // let resp = await utils.loginUser(obj);
+        dispatch(getLoginAction(obj))
+        // setTokenCheck(resp.data.token);
     }
 
     return (
         <div className="firstDiv">
-            <Form>
+            <Form onSubmit={login}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" required onChange={e => setUser({ ...user, email: e.target.value })} />
+                    <Form.Control type="email" placeholder="Enter email" required onChange={e => setEmail(e.target.value )} />
                     <Form.Text className="text-muted">
                         We'll never share your email with anyone else.
                     </Form.Text>
@@ -29,10 +35,10 @@ function LogIn({ setTokenCheck }) {
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" required onChange={e => setUser({ ...user, password: e.target.value })} />
+                    <Form.Control type="password" placeholder="Password" required onChange={e => setPassword(e.target.value) } />
                 </Form.Group>
 
-                <Button variant="primary" type="button" onClick={login}>
+                <Button variant="primary" type="submit" onClick={login}>
                     click!
                 </Button>
             </Form>

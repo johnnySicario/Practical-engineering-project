@@ -5,6 +5,7 @@ const singupUser = (obj) =>{
 }   
 
 const loginUser = (obj) =>{
+    console.log(obj);
     return axios.post("http://localhost:8000/authentication/login",obj)
 }   
 

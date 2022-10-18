@@ -6,7 +6,7 @@ import Publication from '../Services/Publication.js';
 import Services from '../Services/Services.js';
 import TableServices from '../Services/TableServices.js';
 import SignUp from '../connection/SignUp.js';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import HomePageComp from './HomePage.js';
 import LogIn from '../connection/LogIn.js';
 import UserProfile from '../profile/UserProfile.js';
@@ -18,19 +18,23 @@ import FAQs from '../other/FAQs';
 import AddPublication from '../Services/AddPublication.js';
 import PetBreed from '../Services/PetBreed';
 import useToken from '../../utils/useToken';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserLoading } from '../../redux/actions/getUsersActions.js';
 
 const MainPageComp = () => {
-    const { token, setToken } = useToken();
-    
-    if (!token) {
-        return <LogIn setTokenCheck={setToken} />
-    }
+    const dispatch = useDispatch()
+    const token = useSelector(state => state.users.token)
+
+    console.log(token);
+    useEffect(() => {
+        dispatch(getUserLoading())
+    },[dispatch])
 
     return (
         <>
-      <Header/>
+      { token ? <Header/> : null}
             <Routes>
-                <Route path='/' element={<HomePageComp />} />
+                <Route path='/' element={token ? <HomePageComp /> : <Navigate to="/login"/>} />
                 <Route path='/sign-up' element={<SignUp />} />
                 <Route path='/login' element={<LogIn />} />
                 <Route path='/contact' element={<Contact />} />
@@ -44,7 +48,7 @@ const MainPageComp = () => {
                 <Route path='/AddPublication' element={<AddPublication />} />
                 <Route path='/PetBreed' element={<PetBreed />} />
             </Routes>
-            <Footer />
+            { token ? <Footer /> : null}
         </>
     );
 }
