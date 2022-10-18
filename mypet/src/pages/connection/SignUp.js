@@ -1,57 +1,57 @@
-import React from 'react';
+import React, {useState} from 'react';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import utils from '../../utils/authenticationUtils';
 
 function SignUp(props) {
-    return (
-        <div>
-<form class="row g-3">
-  <div class="col-md-6">
-    <label for="inputEmail4" class="form-label">Email</label>
-    <input type="email" class="form-control" id="inputEmail4"/>
-  </div>
-  <div class="col-md-6">
-    <label for="inputPassword4" class="form-label">Password</label>
-    <input type="password" class="form-control" id="inputPassword4"/>
-  </div>
-  <div class="col-md-6">
-    <label for="inputEmail4" class="form-label">First name</label>
-    <input type="email" class="form-control" id="inputEmail4"/>
-  </div>
-  <div class="col-md-6">
-    <label for="inputPassword4" class="form-label">Last name</label>
-    <input type="password" class="form-control" id="inputPassword4"/>
-  </div>
-  <div class="col-md-6">
-    <label for="inputPhoneNumber" class="form-label">Phone number</label>
-    <input type="Phone" class="form-control" id="inputPhoneNumber"/>
-  </div>
-  
-  <div class="col-md-6">
-    <label for="inputCity" class="form-label">Address</label>
-    <input type="text" class="form-control" id="inputCity"/>
-  </div>
-  <div class="col-md-4">
-    <label for="inputState" class="form-label">Gender</label>
-    <select id="inputState" class="form-select">
-      <option selected>Choose...</option>
-      <option>Male</option>
-      <option>Female</option>
-    </select>
-  </div>
-  <div class="col-12">
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="gridCheck"/>
-      <label class="form-check-label" for="gridCheck">
-        Check me out
-      </label>
+  const [ email, setEmail ] = useState('')
+  const [ username, setUserName ] = useState('')
+  const [ password, setPassword ] = useState('')
+  const [ password2, setPassword2 ] = useState('')
+
+  const signUp = async (e) => {
+    e.preventDefault();
+    let obg = { email: email, username: username, password: password, password2: password2}
+
+    let resp = await utils.addItem(obg)
+
+    console.log(resp.data)
+  }
+
+  return (
+    <div>
+      <Form>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control type="email" placeholder="Enter email" required onChange={(e) => setEmail(e.target.value)} />
+          <Form.Text className="text-muted">
+            We'll never share your email with anyone else.
+          </Form.Text>
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>username</Form.Label>
+          <Form.Control type="text"ext placeholder="Enter username" required onChange={(e) => setUserName(e.target.value)} />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control type="password" placeholder="Password" required onChange={(e) => setPassword(e.target.value)} />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Password2</Form.Label>
+          <Form.Control type="password" placeholder="Password" required onChange={(e) => setPassword2(e.target.value)} />
+        </Form.Group>
+
+
+        <Button variant="primary" type="submit" onSubmit={signUp}>
+          Submit
+        </Button>
+      </Form>
     </div>
-  </div>
-  <div class="col-12">
-    <button type="submit" class="btn btn-primary">Sign in</button>
-  </div>
-</form>
-        </div>
-        
-    );
+
+  );
 }
 
 export default SignUp;
