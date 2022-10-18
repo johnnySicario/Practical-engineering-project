@@ -1,14 +1,16 @@
 import axios from 'axios'
 
-const url = "http://localhost:8000/authentication/register"
-
-const addItem = (obj) =>{
-    return axios.post(url,obj)
+const singupUser = (obj) =>{
+    return axios.post("http://localhost:8000/authentication/register",obj)
 }   
 
+const loginUser = (obj) =>{
+    return axios.post("http://localhost:8000/authentication/login",obj)
+}   
 
 const exportedObject = {
-    addItem
+    singupUser,
+    loginUser
 };
 
 export default exportedObject

@@ -1,19 +1,20 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import utils from '../../utils/authenticationUtils';
 
 function SignUp(props) {
-  const [ email, setEmail ] = useState('')
-  const [ username, setUserName ] = useState('')
-  const [ password, setPassword ] = useState('')
-  const [ password2, setPassword2 ] = useState('')
+  const [email, setEmail] = useState('')
+  const [username, setUserName] = useState('')
+  const [password, setPassword] = useState('')
+  const [password2, setPassword2] = useState('')
 
   const signUp = async (e) => {
     e.preventDefault();
-    let obg = { email: email, username: username, password: password, password2: password2}
+    let obg = { email: email, username: username, password: password, password2: password2 }
 
-    let resp = await utils.addItem(obg)
+    console.log(obg)
+    let resp = await utils.singupUser(obg)
 
     console.log(resp.data)
   }
@@ -31,7 +32,7 @@ function SignUp(props) {
 
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>username</Form.Label>
-          <Form.Control type="text"ext placeholder="Enter username" required onChange={(e) => setUserName(e.target.value)} />
+          <Form.Control type="text" ext placeholder="Enter username" required onChange={(e) => setUserName(e.target.value)} />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -44,8 +45,7 @@ function SignUp(props) {
           <Form.Control type="password" placeholder="Password" required onChange={(e) => setPassword2(e.target.value)} />
         </Form.Group>
 
-
-        <Button variant="primary" type="submit" onSubmit={signUp}>
+        <Button variant="primary" type="button" onClick={signUp}>
           Submit
         </Button>
       </Form>

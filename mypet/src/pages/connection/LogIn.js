@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 import './LogIn.css';
 import { connect } from "react-redux";
+import PropTypes from 'prop-types';
+import utils from './../../utils/authenticationUtils'
 
-
-function LogIn(props) {
+function LogIn({ setTokenCheck }) {
     const [user, setUser] = useState([{}]);
 
     const login = async (e) => {
         console.log("login")
         e.preventDefault();
         let obj = { ...user };
-        props.dispatch({ type: 'GET_USER', payload: obj });
+        
+        let resp = await utils.loginUser(obj);
+        setTokenCheck(resp.data.token);
     }
 
     return (
@@ -33,6 +36,10 @@ function LogIn(props) {
             </form>
         </div>
     );
+}
+
+LogIn.propTypes = {
+    setTokenCheck: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => {
