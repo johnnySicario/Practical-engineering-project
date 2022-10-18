@@ -7,6 +7,7 @@ var getAllServices = () => {
                 reject(err)
             }
             else {
+                console.log(data)
                 resolve(data)
             }
         })

@@ -3,6 +3,7 @@ var appRouter = express.Router()
 var servicesBL = require('../models/serviceBL')
 
 appRouter.route('/').get(async(req,resp)=>{
+    console.log("get")
     var services = await servicesBL.getAllServices()
     return resp.json(services)
 })
