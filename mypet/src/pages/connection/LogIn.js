@@ -32,7 +32,7 @@ function LogIn({ setTokenCheck }) {
                     <Form.Control type="password" placeholder="Password" required onChange={e => setUser({ ...user, password: e.target.value })} />
                 </Form.Group>
 
-                <Button variant="primary" type="button">
+                <Button variant="primary" type="button" onClick={login}>
                     click!
                 </Button>
             </Form>
