@@ -22,14 +22,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getUserLoading } from '../../redux/actions/getAuthActions.js';
 
 const MainPageComp = () => {
-    const token = useSelector(state => state.users.token)
+    const token = useSelector(state => state.auth.token)
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(getUserLoading())
-    })
-
-    console.log(token);
+    },[dispatch])
 
     return (
         <>

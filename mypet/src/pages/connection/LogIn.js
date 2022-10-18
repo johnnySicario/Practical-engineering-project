@@ -9,7 +9,7 @@ import { getAuthAction } from '../../redux/actions/getAuthActions';
 
 const LogIn = () => {
     const dispatch = useDispatch()
-    const usersLoading = useSelector(state => state.users.usersLoading)
+    const authLoading = useSelector(state => state.auth.authLoading)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -18,8 +18,6 @@ const LogIn = () => {
         let obj = { email , password };
         dispatch(getAuthAction(obj))
     }
-
-    console.log(usersLoading)
 
     return (
         <div className="firstDiv">

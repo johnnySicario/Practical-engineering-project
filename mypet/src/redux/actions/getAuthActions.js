@@ -16,7 +16,7 @@ export const getUserLoading = () => async (dispatch , getState) => {
     dispatch({ type : 'SET_USERS_LOADING' , payload : true })
     let token = getState()?.users?.token
     dispatch({ type : 'SET_USERS_LOADING' , payload : false })
-    if(!token) {
+    if(token) {
         dispatch({ type : 'LOAD_USER_AUTH' , payload : token})
     } else return null
 }
