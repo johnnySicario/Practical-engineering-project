@@ -31,11 +31,11 @@ export const getLogOut = () => async (dispatch) => {
 
 export const getSignUp = (data) => async (dispatch) => {
     dispatch({ type : 'SET_USERS_LOADING' , payload : true })
-    console.log(data);
     exportedObject.singupUser(data).then((user) => {
-        console.log(user);
-    }).catch((error) => {
-        console.log(error);
+        toast.success('The registration was successful' , {position : "bottom-right"})
+        dispatch(getAuthAction({ email : data.email , password : data.password }))
+    }).catch((err) => {
+        toast.error(err.response.data.email , {position : "bottom-right"})
     })
     dispatch({ type : 'SET_USERS_LOADING' , payload : false })
 }

@@ -28,8 +28,6 @@ var getUserById = (userId) => {
 }
 
 var addUser = (newUser, social) => {
-    console.log(newUser)
-   
 
     return new Promise((resolve, reject) => {
         var user;
