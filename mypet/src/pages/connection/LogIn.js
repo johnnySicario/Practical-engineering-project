@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import './LogIn.css';
 import { connect, useDispatch, useSelector } from "react-redux";
-import PropTypes from 'prop-types';
-import utils from './../../utils/authenticationUtils'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { getAuthAction } from '../../redux/actions/getAuthActions';
+import { useNavigate } from 'react-router-dom';
 
 const LogIn = () => {
     const dispatch = useDispatch()
-    const authLoading = useSelector(state => state.auth.authLoading)
+    const navigate = useNavigate()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -34,8 +33,8 @@ const LogIn = () => {
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" placeholder="Password" required onChange={e => setPassword(e.target.value) } />
                 </Form.Group>
-
-                <Button variant="primary" type="submit" onClick={login}>
+                <p>Don't have a user? <span style={{textDecoration: 'underline', cursor: 'pointer'}} onClick={() => navigate('/sign-up')}>Go to sign up</span></p>
+                <Button disabled={email === "" || password === "" ? true : false} variant="primary" type="submit" onClick={login}>
                     Login
                 </Button>
             </Form>
