@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 function Publication(props) {
   const navigate = useNavigate()
+
   return (
     <div>
       <div class="btn-group" role="group" aria-label="Basic example">
@@ -34,7 +35,7 @@ function Publication(props) {
             </div>
           </div>
         </div>
-        <div class="accordion-item">
+        <div style={{display: 'grid'}} class="accordion-item">
           <h2 class="accordion-header" id="headingThree">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
               גורים של רועה גרמני כולל סל אימוץ
@@ -42,7 +43,14 @@ function Publication(props) {
           </h2>
           <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
             <div class="accordion-body">
+              <div>
+              </div>
+              <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+          
+</div>
+              <div>
               <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+              </div>
             </div>
           </div>
         </div>
