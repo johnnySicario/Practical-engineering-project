@@ -17,7 +17,6 @@ import About from '../other/About';
 import FAQs from '../other/FAQs';
 import AddPublication from '../Services/AddPublication.js';
 import PetBreed from '../Services/PetBreed';
-import useToken from '../../utils/useToken';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserLoading } from '../../redux/actions/getAuthActions.js';
 
