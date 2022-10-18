@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import UserManagment from '../Administration/UserManagment.js';
 import Contact from '../other/Contact.js';
 import Main from '../Administration/User-management/Main/main.js';
