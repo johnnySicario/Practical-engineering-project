@@ -32,7 +32,6 @@ const SignUp = () => {
     e.preventDefault();
     let obj = { email , username , password }
     dispatch(getSignUp(obj))
-    // let resp = await utils.singupUser(obj)
   }
 
 
