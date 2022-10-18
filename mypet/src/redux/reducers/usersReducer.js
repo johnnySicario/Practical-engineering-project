@@ -7,7 +7,7 @@ const initialState = {
 }
 
 const getData = async (user) => {
-    let resp = await axios.post("",user)
+    let resp = await axios.post("http://localhost:8000/authentication/login",user)
     console.log(resp);
     console.log(resp.data);
 }
@@ -19,8 +19,8 @@ const usersReduces = (state = initialState, action) => {
             state = { ...state, users: action.payload }
             return state
         case 'GET_USER':
-            console.log(action.payload)
-
+            console.log('GET_USER')
+            getData(action.payload)
             state = { ...state, users: action.payload }
             return state
         case 'SET_USERS_LOADING':

@@ -7,6 +7,7 @@ function LogIn(props) {
     const [user, setUser] = useState([{}]);
 
     const login = async (e) => {
+        console.log("login")
         e.preventDefault();
         let obj = { ...user };
         props.dispatch({ type: 'GET_USER', payload: obj });

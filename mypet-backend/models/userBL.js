@@ -1,9 +1,9 @@
-// var Contact = require('./contactSchema')
-var User = require('./userSchema')
+
+var users = require('./userSchema')
 
 var getAllUsers = () => {
     return new Promise((resolve, reject) => {
-        User.find({}, (err, data) => {
+        users.find({}, (err, data) => {
             if (err) {
                 reject(err)
             }
@@ -16,7 +16,7 @@ var getAllUsers = () => {
 
 var getUserById = (userId) => {
     return new Promise((resolve, reject) => {
-        User.findById(userId, (err, data) => {
+        users.findById(userId, (err, data) => {
             if (err) {
                 reject(err)
             }
@@ -29,10 +29,12 @@ var getUserById = (userId) => {
 
 var addUser = (newUser, social) => {
     console.log(newUser)
+   
+
     return new Promise((resolve, reject) => {
         var user;
         if (social == "google") {
-            user = new User({
+            user = new users({
                 idSocial: newUser.id,
                 email: newUser.emails[0].value,
                 username: newUser.displayName,
@@ -41,7 +43,7 @@ var addUser = (newUser, social) => {
         }
 
         if (social == "facebook") {
-            user = new User({
+            user = new users({
                 idSocial: newUser.id,
                 username: newUser.displayName,
                 password: newUser.password
@@ -49,14 +51,14 @@ var addUser = (newUser, social) => {
         }
 
         if (social == "regular") {
-            user = new User({
+            user = new users({
                 username: newUser.username,
                 email: newUser.email,
                 password: newUser.password
             })
         }
 
-        User.save((err) => {
+        user.save((err) => {
             if (err) {
                 reject(err)
             }
@@ -70,7 +72,7 @@ var addUser = (newUser, social) => {
 
 var deleteUser = (userId) => {
     return new Promise((resolve, reject) => {
-        User.findByIdAndDelete(userId, (err) => {
+        users.findByIdAndDelete(userId, (err) => {
             if (err) {
                 reject(err)
             }
