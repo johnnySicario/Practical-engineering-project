@@ -20,3 +20,7 @@ export const getUserLoading = () => async (dispatch , getState) => {
         dispatch({ type : 'LOAD_USER_AUTH' , payload : token})
     } else return null
 }
+
+export const getLogOut = () => async (dispatch) => {
+    
+}
