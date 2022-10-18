@@ -29,4 +29,10 @@ export const getLogOut = () => async (dispatch) => {
     dispatch({ type : 'SET_USERS_LOADING' , payload : false })
 }
 
+export const getSignUp = (data) => async (dispatch) => {
+    dispatch({ type : 'SET_USERS_LOADING' , payload : true })
+    console.log(data);
+    dispatch({ type : 'SET_USERS_LOADING' , payload : false })
+}
+
 
