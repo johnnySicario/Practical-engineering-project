@@ -49,7 +49,7 @@ const SignUp = () => {
 
         <Form.Group className="mb-3" controlId="formBasicUserName">
           <Form.Label>Username</Form.Label>
-          <Form.Control type="text" ext placeholder="Enter username" required onChange={(e) => setUserName(e.target.value)} />
+          <Form.Control type="text" placeholder="Enter username" required onChange={(e) => setUserName(e.target.value)} />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
