@@ -12,7 +12,6 @@ function AddPublication(props) {
     const hadleSubmitForm = (e) => {
         e.preventDefault();
         let data = { UserName , Title , Message , photo }
-        console.log(data);
       }
 
     useEffect(() => {

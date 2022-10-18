@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
-
+import Button from 'react-bootstrap/Button';
 
 function UserProfile() {
     const [photo, setPhoto] = useState(null)
@@ -53,22 +53,22 @@ function UserProfile() {
         <div>
           {photo && <img style={{width: '10%' , float: 'left'}} alt='someting' src={photo?.url}/>}
           <form onSubmit={hadleSubmitForm}>
-          <div className="input-group mb-3">
-                <span className="input-group-text" id="inputGroup-sizing-default">First name</span>
-                <input required onChange={(e) => setFirstName(e.target.value)} type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
-            </div>
-            <div className="input-group mb-3">
-                <span className="input-group-text" id="inputGroup-sizing-default">Last name</span>
-                <input required onChange={(e) => setLastName(e.target.value)} type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
-            </div>
-            <div className="input-group mb-3">
-                <span className="input-group-text" id="inputGroup-sizing-default">Email</span>
-                <input required onChange={(e) => setEmail(e.target.value)} type="email" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
-            </div>
-            <div className="input-group mb-3">
-                <span className="input-group-text" id="inputGroup-sizing-default">Phone Number</span>
-                <input required onChange={(e) => setPhoneNumber(e.target.value)} type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
-            </div>
+            <Form.Group className="input-group mb-3">
+        <Form.Label style={{marginBottom: '0px'}} className="input-group-text">First Name</Form.Label>
+        <Form.Control aria-describedby="inputGroup-sizing-default" type='text' required onChange={(e) => setFirstName(e.target.value)}/>
+      </Form.Group>
+            <Form.Group className="input-group mb-3">
+        <Form.Label style={{marginBottom: '0px'}} className="input-group-text">Last Name</Form.Label>
+        <Form.Control aria-describedby="inputGroup-sizing-default" type='text' required onChange={(e) => setLastName(e.target.value)}/>
+      </Form.Group>
+            <Form.Group className="input-group mb-3">
+        <Form.Label style={{marginBottom: '0px'}} className="input-group-text">Email</Form.Label>
+        <Form.Control aria-describedby="inputGroup-sizing-default" type='text' required onChange={(e) => setEmail(e.target.value)}/>
+      </Form.Group>
+            <Form.Group className="input-group mb-3">
+        <Form.Label style={{marginBottom: '0px'}} className="input-group-text">Phone Number</Form.Label>
+        <Form.Control aria-describedby="inputGroup-sizing-default" type='text' required onChange={(e) => setPhoneNumber(e.target.value)}/>
+      </Form.Group>
             <div className="input-group mb-3">
               <fieldset>
                 <Form.Group>
@@ -82,25 +82,19 @@ function UserProfile() {
                   </Form.Select>
                 </Form.Group>
               </fieldset>
-                {/* <label className="input-group-text" for="inputGroupSelect01">Age</label> */}
-                {/* <select onChange={(e) => setAge(e.target.value)} defaultValue="select" className="form-select" id="inputGroupSelect01">
-                    <option selected>Choose...</option>
-                    {dddd.map((element , index) => {
-                      return  <option key={index} value={element.value}>{element.value}</option>
-                    })}
-                </select> */}
             </div>
-            <div className="input-group mb-3">
-                <span className="input-group-text" id="inputGroup-sizing-default">Pet breed</span>
-                <input required onChange={(e) => setPet(e.target.value)} type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
-            </div>
-            <div className="input-group mb-3">
-  <label className="input-group-text" for="inputGroupFile01">Upload your pet</label>
-  <input  required type="file" className="form-control" id="inputGroupFile01" onChange={e => handleFileInputChange({ file : e.target.files[0] })} accept="image/*"/>
-</div>
+            <Form.Group className="input-group mb-3">
+        <Form.Label style={{marginBottom: '0px'}} className="input-group-text">Pet breed</Form.Label>
+        <Form.Control aria-describedby="inputGroup-sizing-default" type='text' required onChange={(e) => setPet(e.target.value)}/>
+      </Form.Group>
+        <Form.Group className="input-group mb-3">
+          <Form.Label className="input-group-text">Upload your pet</Form.Label>
+            <Form.Control hidden required type="file" onChange={e => handleFileInputChange({ file : e.target.files[0] })} accept="image/*"/>
+            <span>{!photo ? null : photo?.file?.name}</span>
+        </Form.Group>
   <div><span style={photoSize ? {color : "red"} : { color : 'green' }}>The image should be up to 1MB</span></div>
 
-<button disabled={fName === "" || lName === "" || email === "" || phoneNumber === "" || age === "" || pet === "" || photo === null || photoSize ? true : false} onClick={hadleSubmitForm} type="submit" className="btn btn-primary">Submit</button>
+<Button disabled={fName === "" || lName === "" || email === "" || phoneNumber === "" || age === "" || pet === "" || photo === null || photoSize ? true : false} onClick={hadleSubmitForm} type="submit">Submit</Button>
           </form>
         </div>
     );
