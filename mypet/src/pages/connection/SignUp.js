@@ -1,27 +1,42 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import utils from '../../utils/authenticationUtils';
+import { useNavigate } from 'react-router-dom';
 
-function SignUp(props) {
+const SignUp = () => {
   const [email, setEmail] = useState('')
   const [username, setUserName] = useState('')
-  const [password, setPassword] = useState('')
-  const [password2, setPassword2] = useState('')
+  const [password, setPassword] = useState(null)
+  const [password2, setPassword2] = useState(null)
+  const [passwordsNotMatch, setPasswordsNotMatch] = useState(false)
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    const checkEmpty = () => {
+    if(password !== password2) {
+      setPasswordsNotMatch(true)
+    } else {
+      setPasswordsNotMatch(false)
+    }
+    }
+    if(password !== null || password2 !== null) {
+      checkEmpty()
+    } else setPasswordsNotMatch(false)
+  }, [password2])
 
   const signUp = async (e) => {
     e.preventDefault();
-    let obg = { email: email, username: username, password: password, password2: password2 }
-
-    console.log(obg)
-    let resp = await utils.singupUser(obg)
-
-    console.log(resp.data)
+    let obj = { email , username , password }
+    console.log(obj)
+    // let resp = await utils.singupUser(obj)
   }
+
+  let disabled = email === "" || username === "" || password === "" || password2 === "" || password !== password2 ? true : false
 
   return (
     <div>
-      <Form>
+      <Form onSubmit={signUp}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control type="email" placeholder="Enter email" required onChange={(e) => setEmail(e.target.value)} />
@@ -30,8 +45,8 @@ function SignUp(props) {
           </Form.Text>
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>username</Form.Label>
+        <Form.Group className="mb-3" controlId="formBasicUserName">
+          <Form.Label>Username</Form.Label>
           <Form.Control type="text" ext placeholder="Enter username" required onChange={(e) => setUserName(e.target.value)} />
         </Form.Group>
 
@@ -40,12 +55,13 @@ function SignUp(props) {
           <Form.Control type="password" placeholder="Password" required onChange={(e) => setPassword(e.target.value)} />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password2</Form.Label>
+        <Form.Group className="mb-3" controlId="formBasicPassword2">
+          <Form.Label>Confirm Password</Form.Label>
           <Form.Control type="password" placeholder="Password" required onChange={(e) => setPassword2(e.target.value)} />
         </Form.Group>
-
-        <Button variant="primary" type="button" onClick={signUp}>
+        {passwordsNotMatch && <span style={{color : 'red'}}>The passwords not match</span>}
+        <p>Do you have a user? <span style={{textDecoration: 'underline', cursor: 'pointer'}} onClick={() => navigate('/login')}>Go to login</span></p>
+        <Button disabled={disabled} variant="primary" type="submit " onClick={signUp}>
           Submit
         </Button>
       </Form>
