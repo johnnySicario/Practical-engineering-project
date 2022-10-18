@@ -21,7 +21,7 @@ import useToken from '../../utils/useToken';
 
 const MainPageComp = () => {
     const { token, setToken } = useToken();
-
+    
     if (!token) {
         return <LogIn setTokenCheck={setToken} />
     }
