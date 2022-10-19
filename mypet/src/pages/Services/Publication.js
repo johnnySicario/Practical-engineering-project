@@ -12,21 +12,19 @@ const Publication = () => {
   const dispatch = useDispatch()
   const publications = useSelector(state => state.publication.publications)
 
-  console.log(publications);
-
   useEffect(() => {
     dispatch(getAllPublications())
   },[dispatch])
 
   return (
     <div>
-      <div class="btn-group" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-primary" style={{ marginTop: "0.5rem" }} onClick={() => navigate('/AddPublication')}>Add publication</button>
+      <div className="btn-group" role="group" aria-label="Basic example">
+        <button type="button" className="btn btn-primary" style={{ marginTop: "0.5rem" }} onClick={() => navigate('/AddPublication')}>Add publication</button>
       </div>
       {
-        publications.map(i => {
+        publications.map((i , index) => {
           return <Accordion key={i._id}>
-          <Accordion.Item>
+          <Accordion.Item eventKey={index}>
             <Accordion.Header>{i.header}</Accordion.Header>
             <Accordion.Body>
               <Row xs='auto'>
