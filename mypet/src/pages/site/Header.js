@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import Dropdown from 'react-bootstrap/Dropdown';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Nav from 'react-bootstrap/Nav';
-import utils from '../../utils/authenticationUtils';
 import { useDispatch, useSelector } from 'react-redux';
 import { getLogOut } from '../../redux/actions/getAuthActions';
 
@@ -32,7 +31,7 @@ const Header = () => {
                                 Contact
                             </Nav.Link>
                         </Nav.Item>
-                        <NavDropdown title="Dropdown" id="nav-dropdown">
+                        <NavDropdown title="Resources" id="nav-dropdown">
                             <NavDropdown.Item onClick={() => navigate('/service')}>Services</NavDropdown.Item>
                             <NavDropdown.Item onClick={() => navigate('/Publication')}>Pet adoption</NavDropdown.Item>
                             <NavDropdown.Item onClick={() => navigate('/PetBreed')}>Pets breed</NavDropdown.Item>
