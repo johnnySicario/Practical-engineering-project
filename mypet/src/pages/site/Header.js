@@ -18,7 +18,7 @@ const Header = () => {
     return (
         <Nav className="navbar navbar-expand-lg bg-light" style={{ marginBottom: "4rem" }}>
             <div className="container-fluid">
-                <p style={{ marginTop: "0.5rem", marginRight: '0.5rem', fontSize: '1.2rem' }} onClick={() => navigate('/home')}>MyPet</p>
+                <p style={{ marginTop: "0.5rem", marginRight: '0.5rem', fontSize: '1.2rem' }} onClick={() => navigate('/')}>MyPet</p>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <Nav.Item>

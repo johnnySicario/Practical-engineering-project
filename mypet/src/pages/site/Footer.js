@@ -19,7 +19,7 @@ const Footer = () => {
           <div className="col-6 col-md-2 mb-3">
             <h5>About Mypet</h5>
             <ul className="nav flex-column">
-              <li style={{cursor : "pointer"}} className="nav-item mb-2"><a onClick={() => navigate('/HomePage')} className="nav-link p-0 text-muted">Home</a></li>
+              <li style={{cursor : "pointer"}} className="nav-item mb-2"><a onClick={() => navigate('/')} className="nav-link p-0 text-muted">Home</a></li>
               <li style={{cursor : "pointer"}} className="nav-item mb-2"><a onClick={() => navigate('/terms')} className="nav-link p-0 text-muted">Terms of service</a></li>
               <li style={{cursor : "pointer"}} className="nav-item mb-2"><a onClick={() => navigate('/FAQs')} className="nav-link p-0 text-muted">FAQs</a></li>
               <li style={{cursor : "pointer"}} className="nav-item mb-2"><a onClick={() => navigate('/Contact')} className="nav-link p-0 text-muted">Contact us</a></li>
