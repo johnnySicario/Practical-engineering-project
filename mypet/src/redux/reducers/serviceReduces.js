@@ -1,3 +1,6 @@
+import axios from 'axios';
+import { api } from "../api"
+
 const initialState = {
     services: [],
     servicesLoading: false
@@ -9,10 +12,12 @@ const servicesReduces = (state = initialState, action) => {
         case 'GET_ALL_SERVICES':
             state = { ...state, services: action.payload }
             return state
-        case 'SET_SERVICES_LOADING':
-            state = { ...state, servicesLoading: action.payload }
+        case 'ADD_SERVICES':
+            axios.post(api + "/service",action.payload)
+            state = { ...state, services : [...action.payload]   }
             return state
         case 'DELETE_SERVICES':
+            axios.delete(api + "/service/" + action.payload);
             state = {
                 ...state, services: state.services.filter(service => {
                     console.log(service._id)
@@ -22,6 +27,10 @@ const servicesReduces = (state = initialState, action) => {
                 })
             }
             return state
+        case 'SET_SERVICES_LOADING':
+            state = { ...state, servicesLoading: action.payload }
+            return state
+
         default:
             return state;
     }

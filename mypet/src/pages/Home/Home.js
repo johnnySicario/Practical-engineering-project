@@ -19,7 +19,7 @@ import { getUserLoading } from '../../redux/actions/getAuthActions.js';
 import { ToastContainer } from "react-toastify";  
 import 'react-toastify/dist/ReactToastify.css';
 import UserManagment from '../Administration/UserManagment.js';
-
+import AddServices from '../Services/AddServices'
 const MainPageComp = () => {
     const token = useSelector(state => state.auth.token)
     const dispatch = useDispatch()
@@ -46,6 +46,7 @@ const MainPageComp = () => {
                 <Route path='/AddPublication' element={token ? <AddPublication /> : <Navigate to="/login"/>} />
                 <Route path='/PetBreed' element={token ? <PetBreed /> : <Navigate to="/login"/>} />
                 <Route path='/users' element={token ? <UserManagment /> : <Navigate to="/login"/>} />
+                <Route path='/addService' element={token ? <AddServices /> : <Navigate to="/login"/>} />
             </Routes>
             { token ? <Footer /> : null}
         </>

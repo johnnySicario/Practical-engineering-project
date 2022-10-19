@@ -32,13 +32,13 @@ var getServiceById = (serviceId) => {
 var addService = (newService) => {
     return new Promise((resolve, reject) => {
 
-        const service = new service({
+        const addService = new service({
             name: newService.name,
-            mail: newService.mail,
-            massage: newService.massage
+            city: newService.city,
+            contact: newService.contact
         })
 
-        service.save((err) => {
+        addService.save((err) => {
             if (err) {
                 reject(err)
             }
