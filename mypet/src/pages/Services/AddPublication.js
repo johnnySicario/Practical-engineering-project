@@ -18,9 +18,10 @@ function AddPublication(props) {
     const [ Title , setTitle ] = useState('')
     const [ Message , setMessage ] = useState('')
 
-    const handleSubmitForm = (e) => {
+    const handleSubmitForm = async (e) => {
         e.preventDefault();
-        dispatch(getAddPublications({ name : auth.username ,header : Title ,text : Message , picture : photo.url }))
+        await dispatch(getAddPublications({ name : auth.username ,header : Title ,text : Message , picture : photo.url }))
+        await navigate('/publication')
       }
 
     useEffect(() => {
