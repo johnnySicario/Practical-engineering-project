@@ -20,7 +20,6 @@ const Header = () => {
         dispatch(getLogOut())
     }
 
-    console.log(auth);
     return (
         <Nav className="navbar navbar-expand-lg bg-light" style={{ marginBottom: "4rem" }}>
             <div className="container-fluid">
