@@ -29,19 +29,19 @@ var getPublicationById = (publicationId) => {
 var addPublication = (newPublication) => {
     return new Promise((resolve, reject) => {
 
-        var publication = new publication({
+        var addPublication = new publication({
             name: newPublication.name,
             header: newPublication.header,
             text: newPublication.text,
             picture: newPublication.picture
         })
         
-        publication.save((err) => {
+        addPublication.save((err) => {
             if (err) {
                 reject(err)
             }
             else {
-                resolve(newPublication)
+                resolve(addPublication)
             }
         })
     })
