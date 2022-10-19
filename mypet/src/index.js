@@ -10,11 +10,13 @@ import thunkMiddleware from "redux-thunk";
 import { applyMiddleware, combineReducers, createStore } from 'redux';
 import authReduces from './redux/reducers/authReduces';
 import servicesReduces from './redux/reducers/serviceReduces';
+import usersReduces from './redux/reducers/userReduces';
 
 
 const rootReducer = combineReducers({
   auth : authReduces,
-  services : servicesReduces
+  services : servicesReduces,
+  users : usersReduces
 })
 
 const composedEnhancer = composeWithDevTools(applyMiddleware(thunkMiddleware))

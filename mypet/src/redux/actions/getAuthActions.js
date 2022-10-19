@@ -16,10 +16,10 @@ export const getAuthAction = (data) => async (dispatch) => {
 
 export const getUserLoading = () => async (dispatch , getState) => {
     dispatch({ type : 'SET_USERS_LOADING' , payload : true })
-    let token = getState()?.users?.token
+    let token = getState()?.auth?.token
     dispatch({ type : 'SET_USERS_LOADING' , payload : false })
     if(token) {
-        dispatch({ type : 'LOAD_USER_AUTH' , payload : token})
+        dispatch({ type : 'LOAD_USER_AUTH' , payload : {token}})
     } else return null
 }
 
