@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
 import { useDispatch, useSelector } from 'react-redux';
-import { getServicesAction } from '../../redux/actions/getServicesActions.js';
+import {getUsersAction} from '../../redux/actions/getUsersActions.js';
 import './UserManagment.css';
 
 function UserManagment(props) {
     const dispatch = useDispatch()
-    // const users = useSelector(state => state)
+    const users = useSelector(state => state.users.users)
 
     useEffect(() => {
-        // dispatch(getServicesAction())
+        dispatch(getUsersAction())
     }, [dispatch])
 
     let usersTable = users.map((data , index) => {
@@ -28,9 +28,8 @@ function UserManagment(props) {
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Business</th>
-                        <th scope="col">City</th>
-                        <th scope="col">Contact</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Email</th>
                     </tr>
                 </thead>
                 <tbody>
