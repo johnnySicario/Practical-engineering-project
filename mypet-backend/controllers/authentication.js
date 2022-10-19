@@ -55,7 +55,11 @@ router.post("/login", (req, res) => {
       if (isMatch) {
 
         jwt.sign(
-          user,
+          {
+            id: user._id,
+            name: user.username,
+            tag: user.tag
+          },
           keys.secretOrKey,
           {
             expiresIn: 31556926 // 1 year in seconds
