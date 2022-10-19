@@ -36,7 +36,8 @@ var addUser = (newUser, social) => {
                 idSocial: newUser.id,
                 email: newUser.emails[0].value,
                 username: newUser.displayName,
-                password: newUser.password
+                password: newUser.password,
+                admin:false
             })
         }
 
@@ -44,7 +45,8 @@ var addUser = (newUser, social) => {
             user = new users({
                 idSocial: newUser.id,
                 username: newUser.displayName,
-                password: newUser.password
+                password: newUser.password,
+                admin:false
             })
         }
 
@@ -52,7 +54,8 @@ var addUser = (newUser, social) => {
             user = new users({
                 username: newUser.username,
                 email: newUser.email,
-                password: newUser.password
+                password: newUser.password,
+                admin:false
             })
         }
 
