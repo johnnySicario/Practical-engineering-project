@@ -1,26 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
-import utilsServices from '../../utils/utilsServices.js';
+import { useDispatch, useSelector } from 'react-redux';
+import { getServicesAction } from '../../redux/actions/getServicesActions.js';
 
-function TableServices(props) {
-
-    const [services, setServices] = useState([])
-
-    const url = "http://localhost:8000/service";
+const  TableServices = () => {
+    const dispatch = useDispatch()
+    const services = useSelector(state => state.services.services)
 
     useEffect(() => {
-        let dbData = async () => {
-            let dataService = await utilsServices.getAll(url)
-            setServices(dataService.data);
-        }
+        dispatch(getServicesAction())
+    }, [dispatch])
 
-        dbData()
-    }, [])
-
-    let servicesTable = services.map((data,index) => {
+    let servicesTable = services.map((data , index) => {
         return (
             <tr key={data._id}>
-                <td>{index}</td>
+                <td>{index + 1}</td>
                 <td>{data.name}</td>
                 <td>{data.city}</td>
                 <td>{data.contact}</td>
@@ -30,7 +24,7 @@ function TableServices(props) {
 
     return (
         <div>
-            <Table>
+            <Table striped bordered hover>
                 <thead>
                     <tr>
                         <th scope="col">#</th>
