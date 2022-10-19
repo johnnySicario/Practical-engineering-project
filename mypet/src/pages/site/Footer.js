@@ -6,6 +6,7 @@ const Footer = () => {
   const navigate = useNavigate()
 
 
+  
   return (
     <div style={{marginTop : "4rem"}}>
     <div className="p-0 bg-success bg-opacity-5 border-info rounded-end rounded-start boundary">
@@ -32,7 +33,7 @@ const Footer = () => {
               <li style={{cursor : "pointer"}} className="nav-item mb-2"><a onClick={() => navigate('/Publication')} className="nav-link p-0 text-muted">Pet adoption</a></li>
               <li style={{cursor : "pointer"}} className="nav-item mb-2"><a onClick={() => navigate('/Service')} className="nav-link p-0 text-muted">Services</a></li>
               <li style={{cursor : "pointer"}} className="nav-item mb-2"><a onClick={() => navigate('/PetBreed')} className="nav-link p-0 text-muted">Pet breeds</a></li>
-              <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-muted"></a></li>
+              <li style={{cursor : "pointer"}} className="nav-item mb-2"><a href="https://spca.co.il/home/" rel="noopener noreferrer">SPCA Israel</a></li>
               <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-muted"></a></li>
             </ul>
           </div>
