@@ -1,4 +1,3 @@
-
 const initialState = {
     services : [],
     servicesLoading: false
@@ -7,7 +6,7 @@ const initialState = {
 
 const servicesReduces = (state = initialState, action) => {
     switch (action.type) {
-        case 'GET_ALL':
+        case 'GET_ALL_SERVICES':
                 state = { ...state, services: action.payload }
             return state
         case 'SET_SERVICES_LOADING':
