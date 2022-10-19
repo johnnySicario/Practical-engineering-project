@@ -31,7 +31,7 @@ const Footer = () => {
             <ul className="nav flex-column">
               <li style={{cursor : "pointer"}} className="nav-item mb-2"><a onClick={() => navigate('/Publication')} className="nav-link p-0 text-muted">Pet adoption</a></li>
               <li style={{cursor : "pointer"}} className="nav-item mb-2"><a onClick={() => navigate('/Service')} className="nav-link p-0 text-muted">Services</a></li>
-              <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-muted">Pricing</a></li>
+              <li style={{cursor : "pointer"}} className="nav-item mb-2"><a onClick={() => navigate('/PetBreed')} className="nav-link p-0 text-muted">Pet breeds</a></li>
               <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-muted"></a></li>
               <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-muted"></a></li>
             </ul>
