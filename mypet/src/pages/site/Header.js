@@ -32,7 +32,7 @@ const Header = () => {
                                 Contact
                             </Nav.Link>
                         </Nav.Item>
-                        <NavDropdown title="Dropdown" id="nav-dropdown">
+                        <NavDropdown title="Resources" id="nav-dropdown">
                             <NavDropdown.Item onClick={() => navigate('/service')}>Services</NavDropdown.Item>
                             <NavDropdown.Item onClick={() => navigate('/Publication')}>Pet adoption</NavDropdown.Item>
                             <NavDropdown.Item onClick={() => navigate('/PetBreed')}>Pets breed</NavDropdown.Item>
