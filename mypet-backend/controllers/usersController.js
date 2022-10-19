@@ -23,13 +23,13 @@ appRouter.route('/').post(async(req,resp)=>{
 
 })
 
-// appRouter.route('/:id').put(async(req, resp)=>{
-//     var id = req.params.id
-//     var userObj = req.body
-//     var result = await usersBL.updateUser(id,userObj)
-//     return resp.json(result)
+appRouter.route('/:id').put(async(req, resp)=>{
+    var id = req.params.id
+    var userObj = req.body
+    var result = await usersBL.updateUser(id,userObj)
+    return resp.json(result)
 
-// })
+})
 
 appRouter.route('/:id').delete(async(req,resp)=>{
     var id = req.params.id

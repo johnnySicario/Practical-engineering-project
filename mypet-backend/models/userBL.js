@@ -97,4 +97,4 @@ var deleteUser = (userId) => {
     })
 }
 
-module.exports = { getAllUsers, getUserById, addUser, deleteUser }
+module.exports = { getAllUsers, getUserById, addUser, updateUser, deleteUser }

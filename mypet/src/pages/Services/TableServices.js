@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getServicesAction } from '../../redux/actions/getServicesActions.js';
+import { getServicesAction, DeleteServicesAction } from '../../redux/actions/getServicesActions.js';
 
 const TableServices = () => {
     const dispatch = useDispatch()
@@ -15,13 +15,13 @@ const TableServices = () => {
     }, [dispatch])
 
     const deleteServices = (id) => {
-        dispatch(getServicesAction({ type: 'DELETE_SERVICES', payload: id }))
+        dispatch(DeleteServicesAction({ type: 'DELETE_SERVICES', payload: id }))
     }
     let servicesTable = [];
     if (services.length > 0) {
         servicesTable = services.map((data, index) => {
             return (
-                <tr key={data._id}>
+                <tr key={"key" + index + "servicesTable"}>
                     <td>{index + 1}</td>
                     <td>{data.name}</td>
                     <td>{data.city}</td>
