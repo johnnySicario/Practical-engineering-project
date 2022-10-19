@@ -54,10 +54,8 @@ router.post("/login", (req, res) => {
     bcrypt.compare(password, user.password).then(isMatch => {
       if (isMatch) {
 
-        const payload = {};
-
         jwt.sign(
-          payload,
+          user,
           keys.secretOrKey,
           {
             expiresIn: 31556926 // 1 year in seconds
@@ -79,6 +77,8 @@ router.post("/login", (req, res) => {
 });
 
 router.post("/logout", (req, res) => {
+  req.logout();
+  res.redirect("/");
 });
 
 module.exports = router;
