@@ -13,7 +13,7 @@ const  TableServices = () => {
     }, [dispatch])
 
     const deleteServices = (id) => {
-        
+        dispatch(getServicesAction({ type : 'DELETE_SERVICES' , payload : id }))
     }
 
     let servicesTable = services.map((data , index) => {
