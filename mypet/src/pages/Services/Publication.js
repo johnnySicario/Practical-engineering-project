@@ -1,32 +1,46 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
-import Carousel from 'react-bootstrap/Carousel';
+import Accordion from 'react-bootstrap/Accordion';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllPublications } from './../../redux/actions/getPublcationActions';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
-function Publication(props) {
+const Publication = () => {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const publications = useSelector(state => state.publication.publications)
+
+  useEffect(() => {
+    dispatch(getAllPublications())
+  },[dispatch])
 
   return (
     <div>
-      <div class="btn-group" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-primary" style={{ marginTop: "0.5rem" }} onClick={() => navigate('/AddPublication')}>Add publication</button>
+      <div className="btn-group" role="group" aria-label="Basic example">
+        <button type="button" className="btn btn-primary" style={{ marginTop: "0.5rem" }} onClick={() => navigate('/AddPublication')}>Add publication</button>
       </div>
-      <Carousel style={{ opacity : 3 , position : 'relative' , marginLeft : 'auto' , marginRight : "auto" , width : "45%" }}>
-        <Carousel.Item interval={1500}>
-          <img
-            className="d-block w-100"
-src="https://media.geeksforgeeks.org/wp-content/uploads/20210425122739/2-300x115.png"
-            alt="Image One"
-          />
-        </Carousel.Item>
-        <Carousel.Item interval={500}>
-          <img
-            className="d-block w-100"
-src="https://media.geeksforgeeks.org/wp-content/uploads/20210425122716/1-300x115.png"
-            alt="Image Two"
-          />
-        </Carousel.Item>
-      </Carousel>
+      {
+        publications.map((i , index) => {
+          return <Accordion key={i._id}>
+          <Accordion.Item eventKey={index}>
+            <Accordion.Header>{i.header}</Accordion.Header>
+            <Accordion.Body>
+              <Row xs='auto'>
+                <Col>
+                  <img style={{width: '100px', height: '100px', objectFit: 'cover'}} alt={i.header} src={i.picture}/>
+                </Col>
+                <Col>
+                <h4>{i.name}</h4>
+                <p>{i.text}</p>
+                </Col>
+              </Row>
+            </Accordion.Body>
+          </Accordion.Item>
+        </Accordion>
+        })
+      }
     </div>
   );
 }

@@ -5,7 +5,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Nav from 'react-bootstrap/Nav';
 import { useDispatch, useSelector } from 'react-redux';
 import { getLogOut, getUserLoading } from '../../redux/actions/getAuthActions';
-
+import logo from '../../logo.jpg';
 const Header = () => {
     const navigate = useNavigate()
     const token = useSelector(state => state.auth.token)
@@ -23,7 +23,8 @@ const Header = () => {
     return (
         <Nav className="navbar navbar-expand-lg bg-light" style={{ marginBottom: "4rem" }}>
             <div className="container-fluid">
-                <p style={{ marginTop: "0.5rem", marginRight: '0.5rem', fontSize: '1.2rem' }} onClick={() => navigate('/')}>MyPet</p>
+            <img src={logo} alt="logo" width="5%" height="20%" />
+                <p style={{ marginTop: "0.5rem", marginRight: '0.5rem', fontSize: '1.2rem' }} onClick={() => navigate('/')}></p>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <Nav.Item>

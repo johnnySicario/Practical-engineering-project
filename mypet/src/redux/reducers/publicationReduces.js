@@ -9,7 +9,7 @@ const publicationsReduces = (state = initialState, action) => {
         case 'GET_ALL_PUBLICATION':
                 state = { ...state, publications: action.payload }
             return state
-        case '' :
+        case 'GET_ADD_PUBLICATION' :
                 state = { ...state, publications : [...action.payload]   }
             return state
         case 'SET_PUBLICATION_LOADING':

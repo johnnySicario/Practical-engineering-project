@@ -3,12 +3,15 @@ import React, { useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { AiOutlineClose } from "react-icons/ai";
+import { AiOutlineArrowLeft } from "react-icons/ai";
 import { useSelector, useDispatch } from 'react-redux';
 import { getAddPublications } from '../../redux/actions/getPublcationActions';
+import { useNavigate } from 'react-router-dom';
 
 
 function AddPublication(props) {
     const auth = useSelector(state => state.auth.auth)
+    const navigate = useNavigate()
     const dispatch = useDispatch()
     const [photo, setPhoto] = useState(null)
     const [photoSize, setPhotoSize] = useState(false)
@@ -43,7 +46,8 @@ function AddPublication(props) {
     };
 
     return (
-        <div>
+        <div style={{width: '40%', marginLeft: 'auto', marginRight: 'auto'}}>
+            <p onClick={() => navigate(-1)} style={{cursor : "pointer"}}><AiOutlineArrowLeft/> Back</p>
             <Form.Group className='input-group mb-3'>
                 <Form.Label style={{marginBottom: '0px'}} className="input-group-text">
                     Title
