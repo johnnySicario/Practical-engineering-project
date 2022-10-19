@@ -1,9 +1,10 @@
+import axios from 'axios'
 import { toast } from 'react-toastify'
-import exportedObject from '../../utils/authenticationUtils'
+import { api } from '../api'
 
 export const getAuthAction = (data) => async (dispatch) => {
     dispatch({ type : 'SET_USERS_LOADING' , payload : true })
-    exportedObject.loginUser(data).then(resp => {
+    await axios.post(`${api}/authentication/login` , data).then(resp => {
         localStorage.setItem('token' , JSON.stringify( resp.data.token))
         dispatch({type : 'GET_LOGIN', payload : resp.data})
         toast.success("Login Successfully" , {position : "bottom-right"})
@@ -31,7 +32,7 @@ export const getLogOut = () => async (dispatch) => {
 
 export const getSignUp = (data) => async (dispatch) => {
     dispatch({ type : 'SET_USERS_LOADING' , payload : true })
-    exportedObject.singupUser(data).then((user) => {
+    await axios.post(`${api}/authentication/register` , data).then((user) => {
         toast.success('The registration was successful' , {position : "bottom-right"})
         dispatch(getAuthAction({ email : data.email , password : data.password }))
     }).catch((err) => {

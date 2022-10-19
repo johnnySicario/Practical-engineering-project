@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import utils from '../../utils/authenticationUtils';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { getSignUp } from '../../redux/actions/getAuthActions';

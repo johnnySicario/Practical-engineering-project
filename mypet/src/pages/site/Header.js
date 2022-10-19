@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import Dropdown from 'react-bootstrap/Dropdown';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Nav from 'react-bootstrap/Nav';
-import utils from '../../utils/authenticationUtils';
 import { useDispatch, useSelector } from 'react-redux';
 import { getLogOut } from '../../redux/actions/getAuthActions';
 

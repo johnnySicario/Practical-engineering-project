@@ -13,7 +13,7 @@ const HomePageComp = () => {
         style={{
           opacity: 3,
           position: "relative",
-          marginLeft: "48rem",
+          marginLeft: "20rem",
           width: "60%",
         }}
       >
