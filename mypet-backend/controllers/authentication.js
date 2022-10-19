@@ -58,7 +58,7 @@ router.post("/login", (req, res) => {
           {
             id: user._id,
             username: user.username,
-            tag: user.tag
+            admin: user.admin
           },
           keys.secretOrKey,
           {
