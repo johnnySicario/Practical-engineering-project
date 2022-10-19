@@ -57,7 +57,7 @@ router.post("/login", (req, res) => {
         jwt.sign(
           {
             id: user._id,
-            name: user.username,
+            username: user.username,
             tag: user.tag
           },
           keys.secretOrKey,
