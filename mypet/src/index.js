@@ -11,12 +11,14 @@ import { applyMiddleware, combineReducers, createStore } from 'redux';
 import authReduces from './redux/reducers/authReduces';
 import servicesReduces from './redux/reducers/serviceReduces';
 import usersReduces from './redux/reducers/userReduces';
+import publicationsReduces from './redux/reducers/publicationReduces';
 
 
 const rootReducer = combineReducers({
   auth : authReduces,
   services : servicesReduces,
-  users : usersReduces
+  users : usersReduces,
+  publication : publicationsReduces
 })
 
 const composedEnhancer = composeWithDevTools(applyMiddleware(thunkMiddleware))
