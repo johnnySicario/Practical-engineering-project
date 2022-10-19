@@ -4,6 +4,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { AiOutlineClose } from "react-icons/ai";
 import { useSelector, useDispatch } from 'react-redux';
+import { getAddPublications } from '../../redux/actions/getPublcationActions';
 
 
 function AddPublication(props) {
@@ -14,10 +15,9 @@ function AddPublication(props) {
     const [ Title , setTitle ] = useState('')
     const [ Message , setMessage ] = useState('')
 
-    const hadleSubmitForm = (e) => {
+    const handleSubmitForm = (e) => {
         e.preventDefault();
-        let data = { name : auth.username ,header : Title ,text : Message , picture : photo.url }
-        dispatch()
+        dispatch(getAddPublications({ name : auth.username ,header : Title ,text : Message , picture : photo.url }))
       }
 
     useEffect(() => {
@@ -62,7 +62,7 @@ function AddPublication(props) {
             <span style={{marginLeft : "1rem"}}>{!photo ? null : <span>{photo?.file?.name} <span onClick={() => setPhoto(null)}><AiOutlineClose style={{color: '#bc4040', cursor: 'pointer', fontSize: '1.5rem'}}/></span></span>} </span>
         </Form.Group>
             <div><span style={photoSize ? { color: "red" } : { color: 'green' }}>The image should be up to 1MB</span></div>
-            <Button disabled={ Title === "" ||Message === "" || photo === null || photoSize ? true : false} onClick={hadleSubmitForm} type="submit" className="btn btn-primary">Submit</Button>
+            <Button disabled={ Title === "" ||Message === "" || photo === null || photoSize ? true : false} onClick={handleSubmitForm} type="submit" className="btn btn-primary">Submit</Button>
         </div>
     );
 }
