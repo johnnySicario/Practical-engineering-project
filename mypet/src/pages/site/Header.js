@@ -1,20 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Dropdown from 'react-bootstrap/Dropdown';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Nav from 'react-bootstrap/Nav';
 import { useDispatch, useSelector } from 'react-redux';
-import { getLogOut } from '../../redux/actions/getAuthActions';
+import { getLogOut, getUserLoading } from '../../redux/actions/getAuthActions';
 
 const Header = () => {
     const navigate = useNavigate()
     const token = useSelector(state => state.auth.token)
+    const auth = useSelector(state => state.auth.auth)
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getUserLoading())
+    },[dispatch])
 
     const logOut = () => {
         dispatch(getLogOut())
     }
 
+    console.log(auth);
     return (
         <Nav className="navbar navbar-expand-lg bg-light" style={{ marginBottom: "4rem" }}>
             <div className="container-fluid">
@@ -56,7 +62,8 @@ const Header = () => {
                                 </Nav.Link>
                             </Nav.Item>
                         </> : <>
-                            <Nav.Item>
+                            <Nav.Item style={{margin: '0rem 1rem'}}>
+                                <span>Hello {auth?.username},</span>
                                 <Nav.Link eventKey="1" onClick={logOut}>
                                     Log Out
                                 </Nav.Link>
