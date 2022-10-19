@@ -6,7 +6,8 @@ const userSchema = new Schema({
   username: String,
   picture: String,
   email: { type: String, unique: true, lowercase: true },
-  password: { type: String }
+  password: { type: String },
+  admin: Boolean
 }, { versionKey: false });
 
 // Create Model
