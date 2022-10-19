@@ -28,7 +28,6 @@ var getUserById = (userId) => {
 }
 
 var addUser = (newUser, social) => {
-
     return new Promise((resolve, reject) => {
         var user;
         if (social == "google") {
@@ -37,7 +36,7 @@ var addUser = (newUser, social) => {
                 email: newUser.emails[0].value,
                 username: newUser.displayName,
                 password: newUser.password,
-                admin:false
+                admin: false
             })
         }
 
@@ -46,7 +45,7 @@ var addUser = (newUser, social) => {
                 idSocial: newUser.id,
                 username: newUser.displayName,
                 password: newUser.password,
-                admin:false
+                admin: false
             })
         }
 
@@ -55,7 +54,7 @@ var addUser = (newUser, social) => {
                 username: newUser.username,
                 email: newUser.email,
                 password: newUser.password,
-                admin:false
+                admin: false
             })
         }
 
@@ -70,6 +69,20 @@ var addUser = (newUser, social) => {
     })
 }
 
+var updateUser = (userId, updatedData) => {
+    return new Promise((resolve, reject) => {
+        users.findByIdAndUpdate(userId, updatedData,
+            (err) => {
+                if (err) {
+                    reject(err)
+                }
+                else {
+                    resolve("user was updated!")
+                }
+            })
+
+    })
+}
 
 var deleteUser = (userId) => {
     return new Promise((resolve, reject) => {
