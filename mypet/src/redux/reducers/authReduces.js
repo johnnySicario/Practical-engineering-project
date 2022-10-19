@@ -1,12 +1,12 @@
 import jwtDecode from 'jwt-decode'
 
 const initialState = {
-    token : localStorage.getItem('token'),
-    auth : {
-            id : null,
-            username : null,
-            admin : null
-        },
+    token: localStorage.getItem('token'),
+    auth: {
+        id: null,
+        username: null,
+        admin: null
+    },
     authLoading: false
 }
 
@@ -17,15 +17,17 @@ const authReduces = (state = initialState, action) => {
             // Take the user details
             let data = jwtDecode(action.payload.token);
             // state = { ...state, token: action.payload.token }
-            return  { ...initialState, 
+            return {
+                ...initialState,
                 token: action.payload.token,
-                auth: { id : data.id ,username : data.username , admin : data.tag } 
+                auth: { id: data.id, username: data.username, admin: data.admin }
             }
-            case 'LOAD_USER_AUTH':
+        case 'LOAD_USER_AUTH':
             let data1 = jwtDecode(action.payload.token);
-            return  { ...initialState, 
+            return {
+                ...initialState,
                 token: action.payload.token,
-                auth: { id : data1.id ,username : data1.username , admin : data1.tag } 
+                auth: { id: data1.id, username: data1.username, admin: data1.admin }
             }
         case 'LOGOUT_AUTH':
             state = { ...state, token: null }
