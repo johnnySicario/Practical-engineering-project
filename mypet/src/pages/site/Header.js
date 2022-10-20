@@ -20,7 +20,7 @@ const Header = () => {
     }
 
     return (
-        <Nav className="navbar navbar-expand-lg bg-light" style={{ marginBottom: "4rem" }}>
+        <Nav className="navbar navbar-expand-lg p-2 mb-2 bg-success" style={{ marginBottom: "4rem" }} >
             <div className="container-fluid">
             <img src={logo} alt="logo" width="5%" height="20%" onClick={() => navigate('/')} style={{cursor : "pointer"}} />
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
