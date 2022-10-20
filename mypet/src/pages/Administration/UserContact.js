@@ -77,7 +77,7 @@ function UserContact(props) {
                         <th scope="col">#</th>
                         <th scope="col">Name</th>
                         <th scope="col">Mail</th>
-                        <th scope="col">Massage</th>
+                        <th scope="col">Message</th>
                         {auth.admin ? <th scope="col">Delete</th> : null}
                     </tr>
                 </thead>

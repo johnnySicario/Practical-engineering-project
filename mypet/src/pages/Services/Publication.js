@@ -10,6 +10,10 @@ import Button from 'react-bootstrap/Button';
 import { AiFillDelete } from "react-icons/ai";
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
+import './services.css';
+
+
+
 
 const Publication = () => {
   const navigate = useNavigate()
@@ -52,8 +56,8 @@ const Publication = () => {
         <button type="button" className="btn btn-primary" style={{ marginTop: "0.5rem" }} onClick={() => navigate('/AddPublication')}>Add publication</button>
       </div><br />
 
-      <InputGroup size="sm" className="mb-3">
-        <InputGroup.Text id="inputGroup-sizing-sm">Search:</InputGroup.Text>
+      <InputGroup size="sm">
+        <InputGroup.Text id="inputGroup-sizing-sm">Search</InputGroup.Text>
         <Form.Control
           aria-label="Small"
           aria-describedby="inputGroup-sizing-sm"
