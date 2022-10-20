@@ -2,8 +2,11 @@ import React, { useEffect } from 'react';
 import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { getUsersAction } from './../../redux/actions/getUsersActions';
+import { getUpdateUserAction, getUsersAction } from './../../redux/actions/getUsersActions';
 import { useDispatch, useSelector } from 'react-redux';
+import { AiFillEdit } from "react-icons/ai";
+import { AiOutlineCheck } from "react-icons/ai";
+import { AiOutlineClose } from "react-icons/ai";
 
 function UserProfile() {
     const users = useSelector(state => state.users.users)
@@ -11,17 +14,24 @@ function UserProfile() {
     const dispatch = useDispatch()
     const [photo, setPhoto] = useState(null)
     const [photoSize, setPhotoSize] = useState(false)
-    const [ fName , setFirstName ] = useState('')
-    const [ lName , setLastName ] = useState('')
+    const [fName , setFirstName ] = useState('')
+    const [lName , setLastName ] = useState('')
     const [phoneNumber, setPhoneNumber] = useState('')
-    const [ age , setAge ] = useState('')
-    const [ petBreed , setPetBreed ] = useState('')
+    const [age , setAge ] = useState('')
+    const [petBreed , setPetBreed ] = useState('')
+    const [fInput, setFInput] = useState(false)
+    const [lInput, setLInput] = useState(false)
+    const [phoneInput, setPhoneInput] = useState(false)
+    const [ageInput, setAgeInput] = useState(false)
+    const [petInput, setPetInput] = useState(false)
+
 
     useEffect(() => {
       dispatch(getUsersAction())
   }, [dispatch])
 
   let myProfile = users.filter(user => user._id === auth.id)
+  console.log(myProfile);
 
     useEffect(() => {
       if(photo !== null) {
@@ -43,11 +53,17 @@ function UserProfile() {
         }
       };
       
-      const hadleSubmitForm = (e) => {
-        e.preventDefault();
-        let data = { fName , lName ,phoneNumber , age , petBreed , photo }
-        // console.log(data);
+      const handleSubmit = () => {
+        let data = { 
+        fName : fName !== "" ? fName : myProfile[0]?.fName ,
+        lName : lName !== "" ? lName : myProfile[0]?.lName ,
+        phoneNumber : phoneNumber !== "" ? phoneNumber : myProfile[0]?.phoneNumber,
+        age : age !== "" ? age : myProfile[0]?.age , 
+        petBreed : petBreed !== "" ? petBreed : myProfile[0]?.petBreed
+        }
+        dispatch(getUpdateUserAction({id : myProfile[0]._id} , data))
       }
+
 
       let options = []
           for (let i = 1; i <= 18; i++) {
@@ -55,17 +71,30 @@ function UserProfile() {
             }
 
         return (
-        <div>
+        <div style={{width : '45%' , marginLeft : 'auto' , marginRight : 'auto'}}>
             <h2 style={{textAlign : "center"}}>{myProfile[0]?.username}</h2>
-          <form style={{width: '45%', marginLeft: 'auto', marginRight: 'auto'}} onSubmit={hadleSubmitForm}>
           {photo && <img style={{width: '10%' , float: 'left'}} alt='someting' src={photo?.url}/>}
-            <Form.Group className="input-group mb-3">
+          <Form.Group className="input-group mb-3">
         <Form.Label style={{marginBottom: '0px'}} className="input-group-text">First Name</Form.Label>
-        <Form.Control aria-describedby="inputGroup-sizing-default" type='text'  onChange={(e) => setFirstName(e.target.value)}/>
-      </Form.Group>
+        {
+          fInput ? 
+          <><Form.Control aria-describedby="inputGroup-sizing-default" type='text'  onChange={(e) => setFirstName(e.target.value)}/>
+          <AiOutlineCheck onClick={() => {handleSubmit() ; setFInput(false)}} style={{cursor : 'pointer' , fontSize: '1.3rem', color: 'green' , margin : '1rem'}}/>
+          <AiOutlineClose onClick={() => {setFInput(false); setFirstName('')}}  style={{cursor : 'pointer' , fontSize: '1.3rem', color: 'red', margin : '1rem'}}/> 
+          </> : 
+          <span style={{marginLeft : '1rem' , marginRight : '1rem'}}>{myProfile[0]?.fName} <AiFillEdit style={{fontSize: '1.3rem', marginLeft: '1rem', color: 'green' , cursor : 'pointer'}} onClick={() => setFInput(true)}/></span>
+        }
+          </Form.Group>
             <Form.Group className="input-group mb-3">
         <Form.Label style={{marginBottom: '0px'}} className="input-group-text">Last Name</Form.Label>
-        <Form.Control aria-describedby="inputGroup-sizing-default" type='text'  onChange={(e) => setLastName(e.target.value)}/>
+        {
+          lInput ? 
+          <><Form.Control aria-describedby="inputGroup-sizing-default" type='text'  onChange={(e) => setLastName(e.target.value)}/>
+          <AiOutlineCheck onClick={() => { handleSubmit(); setLInput(false) }} style={{cursor : 'pointer' , fontSize: '1.3rem', color: 'green' , margin : '1rem'}}/>
+          <AiOutlineClose onClick={() => {setLInput(false); setLastName('')}}  style={{cursor : 'pointer' , fontSize: '1.3rem', color: 'red', margin : '1rem'}}/> 
+          </> : 
+          <span style={{marginLeft : '1rem' , marginRight : '1rem'}}>{myProfile[0]?.lName} <AiFillEdit style={{fontSize: '1.3rem', marginLeft: '1rem', color: 'green' , cursor : 'pointer'}} onClick={() => setLInput(true)}/></span>
+        }
       </Form.Group>
             <Form.Group className="input-group mb-3">
         <Form.Label style={{marginBottom: '0px'}} className="input-group-text">Email</Form.Label>
@@ -73,26 +102,44 @@ function UserProfile() {
       </Form.Group>
             <Form.Group className="input-group mb-3">
         <Form.Label style={{marginBottom: '0px'}} className="input-group-text">Phone Number</Form.Label>
-        <Form.Control aria-describedby="inputGroup-sizing-default" type='text'  onChange={(e) => setPhoneNumber(e.target.value)}/>
+        {
+          phoneInput ? 
+          <><Form.Control aria-describedby="inputGroup-sizing-default" type='text'  onChange={(e) => setPhoneNumber(e.target.value)}/>
+          <AiOutlineCheck onClick={() => { handleSubmit(); setPhoneInput(false) }} style={{cursor : 'pointer' , fontSize: '1.3rem', color: 'green' , margin : '1rem'}}/>
+          <AiOutlineClose onClick={() => {setPhoneInput(false); setPhoneNumber('')}}  style={{cursor : 'pointer' , fontSize: '1.3rem', color: 'red', margin : '1rem'}}/> 
+          </> : 
+          <span style={{marginLeft : '1rem' , marginRight : '1rem'}}>{ myProfile[0]?.phoneNumber } <AiFillEdit style={{fontSize: '1.3rem', marginLeft: '1rem', color: 'green' , cursor : 'pointer'}} onClick={() => setPhoneInput(true)}/></span>
+        }
       </Form.Group>
-            <div className="input-group mb-3">
-              <fieldset>
-                <Form.Group>
-                  <Form.Label htmlFor=''>Age</Form.Label>
-                  <Form.Select onChange={(e) => setAge(e.target.value)} value={age} required={true}>
+                <Form.Group className="input-group mb-3">
+                  <Form.Label style={{marginBottom: '0px'}} className="input-group-text">Age</Form.Label>
                   {
-                  options.map((item) => {
-                    return <option key={item.key} value={item.value}>{item.value}</option>
-                  })
+                    ageInput ? 
+                    <>
+                    <Form.Select onChange={(e) => setAge(e.target.value)} value={age} required={true}>
+                    {
+                    options.map((item) => {
+                      return <option key={item.key} value={item.value}>{item.value}</option>
+                    })
+                    }
+                    </Form.Select>
+                    <AiOutlineCheck onClick={() => {setAgeInput(false); handleSubmit()}} style={{cursor : 'pointer' , fontSize: '1.3rem', color: 'green' , margin : '1rem'}}/>
+          <AiOutlineClose onClick={() => {setAgeInput(false); setAge('')}}  style={{cursor : 'pointer' , fontSize: '1.3rem', color: 'red', margin : '1rem'}}/> 
+                    </> : 
+                    <span style={{marginLeft : '1rem' , marginRight : '1rem' }}>{myProfile[0]?.age} <AiFillEdit style={{fontSize: '1.3rem', marginLeft: '1rem', color: 'green' , cursor : 'pointer'}} onClick={() => setAgeInput(true)}/></span>
                   }
-                  </Form.Select>
                 </Form.Group>
-              </fieldset>
-            </div>
             <Form.Group className="input-group mb-3">
-        <Form.Label style={{marginBottom: '0px'}} className="input-group-text">Pet breed</Form.Label>
-        <Form.Control aria-describedby="inputGroup-sizing-default" type='text' required onChange={(e) => setPetBreed(e.target.value)}/>
-      </Form.Group>
+              <Form.Label style={{marginBottom: '0px'}} className="input-group-text">Pet breed</Form.Label>
+            {
+              petInput ? 
+              <><Form.Control aria-describedby="inputGroup-sizing-default" type='text'  onChange={(e) => setPetBreed(e.target.value)}/>
+            <AiOutlineCheck onClick={() => {handleSubmit() ; setPetInput(false)}} style={{cursor : 'pointer' , fontSize: '1.3rem', color: 'green' , margin : '1rem'}}/>
+            <AiOutlineClose onClick={() => { setPetInput(false) ; setPetBreed('') }}  style={{cursor : 'pointer' , fontSize: '1.3rem', color: 'red', margin : '1rem'}}/> 
+            </> : 
+            <span style={{marginLeft : '1rem' , marginRight : '1rem'}}>{myProfile[0]?.petBreed} <AiFillEdit style={{fontSize: '1.3rem', marginLeft: '1rem', color: 'green' , cursor : 'pointer'}} onClick={() => setPetInput(true)}/></span>
+          }
+          </Form.Group>
         <Form.Group className="input-group mb-3">
           <Form.Label className="input-group-text" htmlFor='AddPicId'>Upload your pet</Form.Label>
             <Form.Control hidden required type="file" id='AddPicId' onChange={e => handleFileInputChange({ file : e.target.files[0] })} accept="image/*"/>
@@ -100,8 +147,7 @@ function UserProfile() {
         </Form.Group>
   <div><span style={photoSize ? {color : "red"} : { color : 'green' }}>The image should be up to 1MB</span></div>
 
-<Button disabled={fName === "" || lName === "" || phoneNumber === "" || age === "" || petBreed === "" || photo === null || photoSize ? true : false} onClick={hadleSubmitForm} type="submit">Submit</Button>
-          </form>
+{/* <Button disabled={fName === "" || lName === "" || phoneNumber === "" || age === "" || petBreed === "" || photo === null || photoSize ? true : false} onClick={hadleSubmitForm} type="submit">Submit</Button>   */}
         </div>
     );
 }
