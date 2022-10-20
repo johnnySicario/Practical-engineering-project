@@ -37,3 +37,10 @@ export const getDeleteUserAction = (id) => async (dispatch) => {
     toast.success('The user deleted!' , {position : "bottom-right"})
     dispatch({ type : 'SET_USERS_LOADING' , payload : false })
 }
+
+export const getAddProfileUser = (id , data) => async (dispatch) => {
+    dispatch({ type : 'SET_USERS_LOADING' , payload : true })
+    await axios.put(`${api}/users/${id.id}` , data)
+    dispatch({ type : 'UPDATE_USER' , payload : {id , data} })
+    dispatch({ type : 'SET_USERS_LOADING' , payload : false })
+}
