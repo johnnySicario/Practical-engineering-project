@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getLogOut } from '../../redux/actions/getAuthActions';
 import logo from '../../logo.jpg';
 import { getUsersAction } from './../../redux/actions/getUsersActions';
+
+
 const Header = () => {
     const navigate = useNavigate()
     const token = useSelector(state => state.auth.token)
@@ -13,12 +15,15 @@ const Header = () => {
     const users = useSelector(state => state.users.users)
     const dispatch = useDispatch()
 
+    // Find the user by the ID that is currently connected to the site.
     let myProfile = users.filter(user => user._id === auth.id)?.[0]
 
+    // Calling a function using dispatch, which calls all users from redux.
     useEffect(() => {
         dispatch(getUsersAction())
     },[dispatch])
 
+    // A function that logs out the user, which calls the function using Redux with Dispatch
     const logOut = () => {
         dispatch(getLogOut())
     }
