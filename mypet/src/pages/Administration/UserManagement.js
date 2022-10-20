@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUsersAction, getUpdateUserAction, getDeleteUserAction } from '../../redux/actions/getUsersActions.js';
-import './UserManagment.css';
+import './UserManagement.css';
 
-function UserManagment(props) {
+const UserManagement = () => {
     const dispatch = useDispatch()
     const users = useSelector(state => state.users.users)
 
@@ -79,4 +79,4 @@ function UserManagment(props) {
     );
 }
 
-export default UserManagment;
+export default UserManagement;
