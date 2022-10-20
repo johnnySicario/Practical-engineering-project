@@ -3,14 +3,17 @@ import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import Accordion from 'react-bootstrap/Accordion';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllPublications } from './../../redux/actions/getPublcationActions';
+import { getAllPublications, getDeletePublication } from './../../redux/actions/getPublcationActions';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
+import { AiFillDelete } from "react-icons/ai";
 
 const Publication = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const publications = useSelector(state => state.publication.publications)
+  const auth = useSelector(state => state.auth.auth)
 
   useEffect(() => {
     dispatch(getAllPublications())
@@ -30,6 +33,11 @@ const Publication = () => {
               <Row xs='auto'>
                 <Col>
                   <img style={{width: '100px', height: '100px', objectFit: 'cover'}} alt={i.header} src={i.picture}/>
+                  <br/>
+                  {
+                  auth?.admin ?  
+                    <><Button onClick={() => dispatch(getDeletePublication(i._id))} variant="danger" size="sm"><AiFillDelete/> Delete</Button></> : null
+                  }
                 </Col>
                 <Col>
                 <h4>{i.name}</h4>

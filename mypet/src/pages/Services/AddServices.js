@@ -4,6 +4,7 @@ import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { AddServicesAction } from '../../redux/actions/getServicesActions.js';
+import { AiOutlineArrowLeft } from 'react-icons/ai';
 
 function AddServices(props) {
     const [service, setService] = useState({})
@@ -19,20 +20,20 @@ function AddServices(props) {
 
     return (
         <div>
-            <input type="button" value="service" onClick={() => { navigate('/service') }} />
+            <p onClick={() => navigate(-1)} style={{cursor : "pointer"}}><AiOutlineArrowLeft/> Back</p>
             <Form>
                 <Form.Group className="mb-3">
-                    <Form.Label>name</Form.Label>
+                    <Form.Label>Name</Form.Label>
                     <Form.Control type="text" placeholder="name" onChange={e => { setService({ ...service, name: e.target.value }) }} />
                 </Form.Group>
 
                 <Form.Group className="mb-3">
-                    <Form.Label>city</Form.Label>
+                    <Form.Label>City</Form.Label>
                     <Form.Control type="text" placeholder="city" onChange={e => { setService({ ...service, city: e.target.value }) }} />
                 </Form.Group>
 
                 <Form.Group className="mb-3">
-                    <Form.Label>contact</Form.Label>
+                    <Form.Label>Contact</Form.Label>
                     <Form.Control type="text" placeholder="contact" onChange={e => { setService({ ...service, contact: e.target.value }) }} />
                 </Form.Group>
 

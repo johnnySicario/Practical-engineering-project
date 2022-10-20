@@ -40,6 +40,13 @@ const Header = () => {
                             <NavDropdown.Item onClick={() => navigate('/Publication')}>Pet adoption</NavDropdown.Item>
                             <NavDropdown.Item onClick={() => navigate('/PetBreed')}>Pets breed</NavDropdown.Item>
                         </NavDropdown>
+                        {
+                            auth?.admin ? <Nav.Item>
+                            <Nav.Link eventKey="1" onClick={() => navigate('/users')}>
+                                Users Management
+                                </Nav.Link>
+                            </Nav.Item> : null
+                        }
 
                     </ul>
                     <form className="d-flex" role="search">
