@@ -57,6 +57,7 @@ function UserProfile() {
         }
       };
       
+      
       const handleSubmit = () => {
         let data = { 
         fName : fName !== "" ? fName : myProfile[0]?.fName ,
@@ -68,6 +69,7 @@ function UserProfile() {
         }
         dispatch(getUpdateUserAction({id : myProfile[0]._id} , data))
       }
+
 
       let options = []
           for (let i = 1; i <= 18; i++) {
@@ -195,7 +197,7 @@ function UserProfile() {
         photo && <div>
           <img style={{width: '100px', height: '100px', objectFit: 'cover'}} alt='someting' src={photo?.url}/>
           <div style={{display: 'inline-grid'}}>
-          <AiOutlineCheck onClick={() => {handleSubmit() ; setPhoto(null)}} style={{cursor : 'pointer' , fontSize: '1.3rem', color: 'green' , margin : '0.5rem'}}/>
+          <AiOutlineCheck onClick={() => {handleSubmit(); setPhoto(null)}} style={{cursor : 'pointer' , fontSize: '1.3rem', color: 'green' , margin : '0.5rem'}}/>
             <AiOutlineClose onClick={() => { setPhoto(null) }}  style={{cursor : 'pointer' , fontSize: '1.3rem', color: 'red', margin : '0.5rem'}}/> 
           </div>
         </div>
