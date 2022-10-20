@@ -23,7 +23,7 @@ function Terms(props) {
             the account of a parent or legal guardian with their permission and direct supervision.<br />
             Children under the age of 13 are not permitted to use our Services.<br />
             You are solely responsible for any activity conducted by a minor on your account.<br />
-            Be a permanent resident of the United States.<br />
+            Be a permanent resident of Israel.<br />
             Choose a user name that does not have language that is offensive, vulgar, <br />
             infringes the intellectual property of others, <br />
             or violates the Terms. Petstore.com reserves the right to reject a user name based <br />
