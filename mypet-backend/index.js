@@ -5,6 +5,7 @@ const keys = require("./config/keys");
 const usersController = require("./controllers/usersController");
 const contactController = require("./controllers/contactController");
 const serviceController = require("./controllers/serviceController");
+const PetBreedsController = require("./controllers/PetBreedsController");
 const publicationController = require("./controllers/publicationController");
 const authenticationController = require("./controllers/authentication");
 let cookieSession = require("cookie-session");
@@ -56,6 +57,7 @@ app.use('/contact', contactController)
 app.use('/authentication', authenticationController)
 app.use('/service', serviceController)
 app.use('/publication', publicationController)
+app.use('/PetBreed', PetBreedsController)
 
 
 

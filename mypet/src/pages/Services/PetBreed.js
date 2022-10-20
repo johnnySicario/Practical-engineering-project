@@ -1,123 +1,64 @@
+import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import axios from 'axios';
+import { api } from './../api';
+
 
 function PetBreed(props) {
-    return (
-        <div>
-          <Container>
-            <Row>
-              <Col>
-              <Card style={{ width: '18rem' , marginBottom : '4rem' }}>
-      <Card.Img variant="top" src="https://backlightblog.com/images/2021/09/pet-photography-header.jpg" />
-      <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
-      </Card.Body>
-    </Card>
-              </Col>
-              <Col>
-              <Card style={{ width: '18rem' , marginBottom : '4rem' }}>
-      <Card.Img variant="top" src="https://backlightblog.com/images/2021/09/pet-photography-header.jpg" />
-      <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
-      </Card.Body>
-    </Card>
-              </Col>
-              <Col>
-              <Card style={{ width: '18rem' , marginBottom : '4rem' }}>
-      <Card.Img variant="top" src="https://backlightblog.com/images/2021/09/pet-photography-header.jpg" />
-      <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
-      </Card.Body>
-    </Card>
-              </Col>
-              <Col>
-              <Card style={{ width: '18rem' , marginBottom : '4rem' }}>
-      <Card.Img variant="top" src="https://backlightblog.com/images/2021/09/pet-photography-header.jpg" />
-      <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
-      </Card.Body>
-    </Card>
-              </Col>
-              <Col>
-              <Card style={{ width: '18rem' , marginBottom : '4rem' }}>
-      <Card.Img variant="top" src="https://backlightblog.com/images/2021/09/pet-photography-header.jpg" />
-      <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
-      </Card.Body>
-    </Card>
-              </Col>
-              <Col>
-              <Card style={{ width: '18rem' , marginBottom : '4rem' }}>
-      <Card.Img variant="top" src="https://backlightblog.com/images/2021/09/pet-photography-header.jpg" />
-      <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
-      </Card.Body>
-    </Card>
-              </Col>
-              <Col>
-              <Card style={{ width: '18rem' , marginBottom : '4rem' }}>
-      <Card.Img variant="top" src="https://backlightblog.com/images/2021/09/pet-photography-header.jpg" />
-      <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
-      </Card.Body>
-    </Card>
-              </Col>
-              <Col>
-              <Card style={{ width: '18rem' , marginBottom : '4rem' }}>
-      <Card.Img variant="top" src="https://backlightblog.com/images/2021/09/pet-photography-header.jpg" />
-      <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
-      </Card.Body>
-    </Card>
-              </Col>
-            </Row>
-          </Container>
+  const auth = useSelector(state => state.auth.auth)
+  const navigate = useNavigate()
+  const [news, setNews] = useState([])
 
-        </div>
-    );
+  useEffect(() => {
+    const fetchData = async () => {
+      let resp = await axios.get(`${api}/PetBreed`)
+      setNews(resp.data)
+    }
+
+    fetchData();
+  }, [news])
+
+  const deleteNew = async (id) => {
+    await axios.delete(`${api}/PetBreed/${id}`)
+    let filternew = news.filter(item => item._id !== id)
+    setNews(filternew);
+  }
+
+  let newsCard = news.map((data, index) => {
+    return (
+      <Col key={"Card"+index+"petBreed"}>
+        <input type="button" value="delete" onClick={() => deleteNew(data._id)} />
+        <Card style={{ width: '18rem', marginBottom: '4rem' }}>
+          <Card.Img variant="top" src={data.picture} />
+          <Card.Body>
+            <Card.Title>{data.title}</Card.Title>
+            <Card.Text>{data.text}</Card.Text>
+            <Button variant="primary">{data.link}</Button>
+          </Card.Body>
+        </Card>
+      </Col>
+    )
+  })
+
+  return (
+    <div>
+      {auth.admin ? <input type="button" value="add New"
+        onClick={() => { navigate('/AddPetBreed') }}
+      /> : null} <br />
+      <Container>
+        <Row>
+          {newsCard}
+        </Row>
+      </Container>
+
+    </div>
+  );
 }
 
 export default PetBreed;
