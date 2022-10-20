@@ -35,7 +35,7 @@ const Footer = () => {
                 <li onClick={() => navigate('/Service')} style={{ cursor: "pointer" }} className="nav-item mb-2">Services</li>
                 <li onClick={() => navigate('/PetBreed')} style={{ cursor: "pointer" }} className="nav-item mb-2">Pet breeds</li>
                 <li style={{ cursor: "pointer" }} className="nav-item mb-2"><a target="blank" href="https://spca.co.il/home/" className="nav-link p-0 text-muted">SPCA Israel</a></li>
-                <li style={{ cursor: "pointer" }} className="nav-item mb-2"><a target="blank" href="https://www.letlive.org.il/" className="nav-link p-0 text-muted">letlive Israel</a></li>
+                <li style={{ cursor: "pointer" }} className="nav-item mb-2"><a target="blank" href="https://en.letlive.org.il/" className="nav-link p-0 text-muted">letlive Israel</a></li>
               </ul>
             </div>
 
