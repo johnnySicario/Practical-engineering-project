@@ -1,24 +1,24 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { api } from './../api';
 import './other.css';
+import { useDispatch } from 'react-redux';
+import { getAddContacts } from '../../redux/actions/getCommentsActions';
 
 
 const Contact = () => {
+    const dispatch = useDispatch()
     const [flag, setFlag] = useState(true);
     const [mail, setMail] = useState('')
     const [Name, setName] = useState('')
     const [message, setMessage] = useState('')
 
     const send = (e) => {
-        let obj = {mail:mail, name:Name, message:message}
         e.preventDefault();
-        axios.post(`${api}/contact`, obj)
+        let obj = {mail:mail, name:Name, message:message}
+        dispatch(getAddContacts(obj))
         setFlag(false);
     }
-
 
 
     return (

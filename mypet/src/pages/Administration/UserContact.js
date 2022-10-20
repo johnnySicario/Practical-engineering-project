@@ -1,32 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Table from 'react-bootstrap/Table';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { api } from './../api';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
+import { getAllContacts, getDeleteContact } from './../../redux/actions/getCommentsActions';
 
 function UserContact(props) {
+    const dispatch = useDispatch()
     const [mail, setMail] = useState([])
     const auth = useSelector(state => state.auth.auth)
+    const comments = useSelector(state => state.comments.comments)
+    const commentsLoading = useSelector(state => state.comments.commentsLoading)
     const [search, setSearch] = useState("");
     const [mailSearch, setMailSearch] = useState([]);
     const [start, setStart] = useState(false);
 
-    // useEffect(() =
-
     useEffect(() => {
         const fetchData = async () => {
-            let resp = await axios.get(`${api}/contact`)
-            setMail(resp.data);
-            setMailSearch(resp.data);
+            dispatch(getAllContacts())
+            setMail(comments);
+            setMailSearch(comments);
         }
 
         fetchData();
-    }, [start]);
+    }, [dispatch]);
 
     useEffect(() => {
-        let dataFilter = mail.filter((searchInput) => {
+        let dataFilter = comments.filter((searchInput) => {
             if (search === '') {
                 return searchInput;
             }
@@ -36,7 +38,7 @@ function UserContact(props) {
             }
         })
         setMailSearch(dataFilter)
-    }, [search])
+    }, [comments , search])
 
     const inputHandler = (e) => {
         var lowerCase = e.target.value.toLowerCase();
@@ -44,10 +46,11 @@ function UserContact(props) {
     }
 
     const deleteContact = async (id) => {
-        await axios.delete(`${api}/contact/${id}`);
+        dispatch(getDeleteContact(id))
         setStart(true)
     }
 
+        console.log(mailSearch);
     let contactTable = mailSearch.map((data, index) => {
         return (
             <tr key={"keyOf" + index + "contactTable" + index}>

@@ -3,9 +3,11 @@ import React, { useEffect } from "react";
 import Button from "react-bootstrap/esm/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPublications } from './../../redux/actions/getPublcationActions';
+import { useNavigate } from 'react-router-dom';
 
 const HomePageComp = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const publications = useSelector(state => state.publication.publications)
 
   useEffect(() => {
@@ -33,7 +35,7 @@ const HomePageComp = () => {
             <Carousel.Caption style={{backgroundColor: 'rgba(0, 0, 0, 0.61)', padding: '2rem' , width : '50%' , marginLeft : "auto" , marginRight : "auto"}}>
             <h3>{item.header}</h3>
             <p>{item.text}</p>
-            <Button>Go to Publication</Button>
+            <Button onClick={() => navigate('/adoptions')}>Go to Pet Adoptions</Button>
             </Carousel.Caption>
           </Carousel.Item>
         })}

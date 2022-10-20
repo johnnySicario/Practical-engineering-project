@@ -46,7 +46,7 @@ const Header = () => {
                         </Nav.Item>
                         <NavDropdown title="Resources" id="nav-dropdown">
                             <NavDropdown.Item onClick={() => navigate('/service')}>Services</NavDropdown.Item>
-                            <NavDropdown.Item onClick={() => navigate('/Publication')}>Pet adoption</NavDropdown.Item>
+                            <NavDropdown.Item onClick={() => navigate('/Adoptions')}>Pet adoption</NavDropdown.Item>
                             <NavDropdown.Item onClick={() => navigate('/PetBreed')}>Pets breed</NavDropdown.Item>
                         </NavDropdown>
                         {

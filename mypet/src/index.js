@@ -12,13 +12,15 @@ import authReduces from './redux/reducers/authReduces';
 import servicesReduces from './redux/reducers/serviceReduces';
 import usersReduces from './redux/reducers/userReduces';
 import publicationsReduces from './redux/reducers/publicationReduces';
+import commentsReduces from './redux/reducers/commentsReduces';
 
 
 const rootReducer = combineReducers({
   auth : authReduces,
   services : servicesReduces,
   users : usersReduces,
-  publication : publicationsReduces
+  publication : publicationsReduces,
+  comments : commentsReduces
 })
 
 const composedEnhancer = composeWithDevTools(applyMiddleware(thunkMiddleware))

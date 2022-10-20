@@ -13,18 +13,25 @@ import About from '../other/About';
 import FAQs from '../other/FAQs';
 import AddPublication from '../Services/AddPublication.js';
 import PetBreed from '../Services/PetBreed';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { ToastContainer } from "react-toastify";  
 import 'react-toastify/dist/ReactToastify.css';
 import UserManagement from '../Administration/UserManagement.js';
 import AddServices from '../Services/AddServices'
 import UserContact from '../Administration/UserContact.js';
 import AddPetBreeds from '../Services/AddPetBreeds.js';
+import { useEffect } from 'react';
+import { getUserLoading } from './../../redux/actions/getAuthActions';
 
 
 const MainPageComp = () => {
+    const dispatch = useDispatch()
     const token = useSelector(state => state.auth.token)
     const auth = useSelector(state => state.auth.auth)
+
+    useEffect(() => {
+        dispatch(getUserLoading())
+    },[dispatch])
 
     return (
         <>
@@ -40,8 +47,8 @@ const MainPageComp = () => {
                 <Route path='/terms' element={token ? <Terms /> : <Navigate to="/login"/>} />
                 <Route path='/About' element={token ? <About /> : <Navigate to="/login"/>} />
                 <Route path='/FAQs' element={token ? <FAQs /> : <Navigate to="/login"/>} />
-                <Route path='/Publication' element={token ? <Publication /> : <Navigate to="/login"/>} />
-                <Route path='/AddPublication' element={token ? <AddPublication /> : <Navigate to="/login"/>} />
+                <Route path='/Adoptions' element={token ? <Publication /> : <Navigate to="/login"/>} />
+                <Route path='/AddAdoptions' element={token ? <AddPublication /> : <Navigate to="/login"/>} />
                 <Route path='/PetBreed' element={token ? <PetBreed /> : <Navigate to="/login"/>} />
                 <Route path='/users' element={token && auth?.admin ? <UserManagement /> : <Navigate to="/"/>} />
                 <Route path='/addService' element={token ? <AddServices /> : <Navigate to="/login"/>} />

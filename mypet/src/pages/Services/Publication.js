@@ -53,7 +53,7 @@ const Publication = () => {
   return (
     <div>
       <div className="btn-group" role="group" aria-label="Basic example">
-        <button type="button" className="btn btn-primary" style={{ marginTop: "0.5rem" }} onClick={() => navigate('/AddPublication')}>Add publication</button>
+        <button type="button" className="btn btn-primary" style={{ marginTop: "0.5rem" }} onClick={() => navigate('/AddAdoptions')}>Add publication</button>
       </div><br />
 
       <InputGroup size="sm">
