@@ -9,6 +9,7 @@ const TableServices = () => {
     const navigate = useNavigate()
     const services = useSelector(state => state.services.services)
     const auth = useSelector(state => state.auth.auth)
+    const [refresh, setRefresh] = useState();
 
     useEffect(() => {
         dispatch(getServicesAction())
@@ -16,21 +17,21 @@ const TableServices = () => {
 
     const deleteServices = (id) => {
         dispatch(DeleteServicesAction({ type: 'DELETE_SERVICES', payload: id }))
+        setRefresh({});
     }
-    let servicesTable = [];
-    if (services.length > 0) {
-        servicesTable = services.map((data, index) => {
-            return (
-                <tr key={"key" + index + "servicesTable"}>
-                    <td>{index + 1}</td>
-                    <td>{data.name}</td>
-                    <td>{data.city}</td>
-                    <td>{data.contact}</td>
-                    {auth.admin ? <td><input type="button" value="delete" onClick={() => deleteServices(data._id)} /></td> : null}
-                </tr>
-            )
-        })
-    }
+
+    let servicesTable = services.map((data, index) => {
+        return (
+            <tr key={"keyOf" + index + "servicesTable" + index}>
+                <td>{index + 1}</td>
+                <td>{data.name}</td>
+                <td>{data.city}</td>
+                <td>{data.contact}</td>
+                {auth.admin ? <td><input type="button" value="delete" onClick={() => deleteServices(data._id)} /></td> : null}
+            </tr>
+        )
+    })
+
 
     return (
         <div>

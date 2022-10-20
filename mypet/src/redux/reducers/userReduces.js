@@ -34,7 +34,6 @@ const usersReduces = (state = initialState, action) => {
         case 'DELETE_USERS':
             axios.delete(api + "/users/" + action.payload);
             let arrDelete = state.users.filter(user => {
-                console.log(user._id)
                 if (user._id !== action.payload) {
                     return user;
                 }

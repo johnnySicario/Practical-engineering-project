@@ -14,8 +14,8 @@ function UserContact(props) {
         }
 
         fetchData();
-    },[mail]);
-    
+    }, [mail]);
+
     const deleteContact = async (id) => {
         await axios.delete(`${api}/contact/${id}`)
         let newMail = mail.filter(mail => mail.id !== id)

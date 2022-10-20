@@ -20,13 +20,12 @@ const servicesReduces = (state = initialState, action) => {
             return state;
         case 'DELETE_SERVICES':
             axios.delete(api + "/service/" + action.payload);
-            state = {
-                ...state, services: state.services.filter(service => {
-                    if (service._id !== action.payload) {
-                        return service;
-                    }
-                })
-            }
+            let serviceToDelete = state.services.filter((service) => {
+                if (service._id !== action.payload) {
+                    return service;
+                }
+            })
+            state = { ...state, services: serviceToDelete }
             return state;
         case 'SET_SERVICES_LOADING':
             state = { ...state, servicesLoading: action.payload }
