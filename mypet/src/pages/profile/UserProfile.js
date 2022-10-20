@@ -1,15 +1,20 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 import { getUpdateUserAction, getUsersAction } from './../../redux/actions/getUsersActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { AiFillEdit } from "react-icons/ai";
 import { AiOutlineCheck } from "react-icons/ai";
 import { AiOutlineClose } from "react-icons/ai";
+import { AiFillCheckCircle } from "react-icons/ai";
+import { AiFillCloseCircle } from "react-icons/ai";
+import { AiFillCamera } from "react-icons/ai";
+import Spinner from 'react-bootstrap/Spinner';
+
 
 function UserProfile() {
     const users = useSelector(state => state.users.users)
+    const usersLoading = useSelector(state => state.users.usersLoading)
     const auth = useSelector(state => state.auth.auth)
     const dispatch = useDispatch()
     const [photo, setPhoto] = useState(null)
@@ -31,7 +36,7 @@ function UserProfile() {
   }, [dispatch])
 
   let myProfile = users.filter(user => user._id === auth.id)
-  console.log(myProfile);
+  console.log(usersLoading);
 
     useEffect(() => {
       if(photo !== null) {
@@ -59,11 +64,11 @@ function UserProfile() {
         lName : lName !== "" ? lName : myProfile[0]?.lName ,
         phoneNumber : phoneNumber !== "" ? phoneNumber : myProfile[0]?.phoneNumber,
         age : age !== "" ? age : myProfile[0]?.age , 
-        petBreed : petBreed !== "" ? petBreed : myProfile[0]?.petBreed
+        petBreed : petBreed !== "" ? petBreed : myProfile[0]?.petBreed,
+        photo : photo !== null ? photo?.url : myProfile[0]?.photo
         }
         dispatch(getUpdateUserAction({id : myProfile[0]._id} , data))
       }
-
 
       let options = []
           for (let i = 1; i <= 18; i++) {
@@ -73,7 +78,6 @@ function UserProfile() {
         return (
         <div style={{width : '45%' , marginLeft : 'auto' , marginRight : 'auto'}}>
             <h2 style={{textAlign : "center"}}>{myProfile[0]?.username}</h2>
-          {photo && <img style={{width: '10%' , float: 'left'}} alt='someting' src={photo?.url}/>}
           <Form.Group className="input-group mb-3">
         <Form.Label style={{marginBottom: '0px'}} className="input-group-text">First Name</Form.Label>
         {
@@ -82,7 +86,13 @@ function UserProfile() {
           <AiOutlineCheck onClick={() => {handleSubmit() ; setFInput(false)}} style={{cursor : 'pointer' , fontSize: '1.3rem', color: 'green' , margin : '1rem'}}/>
           <AiOutlineClose onClick={() => {setFInput(false); setFirstName('')}}  style={{cursor : 'pointer' , fontSize: '1.3rem', color: 'red', margin : '1rem'}}/> 
           </> : 
-          <span style={{marginLeft : '1rem' , marginRight : '1rem'}}>{myProfile[0]?.fName} <AiFillEdit style={{fontSize: '1.3rem', marginLeft: '1rem', color: 'green' , cursor : 'pointer'}} onClick={() => setFInput(true)}/></span>
+          <span style={{marginLeft : '1rem' , marginRight : '1rem'}}>
+          {
+            usersLoading ? <Spinner animation="grow" /> : <>
+            {myProfile[0]?.fName} <AiFillEdit style={{fontSize: '1.3rem', marginLeft: '1rem', color: 'green' , cursor : 'pointer'}} onClick={() => setFInput(true)}/>
+            </>
+          }
+          </span>
         }
           </Form.Group>
             <Form.Group className="input-group mb-3">
@@ -93,7 +103,13 @@ function UserProfile() {
           <AiOutlineCheck onClick={() => { handleSubmit(); setLInput(false) }} style={{cursor : 'pointer' , fontSize: '1.3rem', color: 'green' , margin : '1rem'}}/>
           <AiOutlineClose onClick={() => {setLInput(false); setLastName('')}}  style={{cursor : 'pointer' , fontSize: '1.3rem', color: 'red', margin : '1rem'}}/> 
           </> : 
-          <span style={{marginLeft : '1rem' , marginRight : '1rem'}}>{myProfile[0]?.lName} <AiFillEdit style={{fontSize: '1.3rem', marginLeft: '1rem', color: 'green' , cursor : 'pointer'}} onClick={() => setLInput(true)}/></span>
+          <span style={{marginLeft : '1rem' , marginRight : '1rem'}}>
+          {
+            usersLoading ? <Spinner animation="grow" /> : <>
+          {myProfile[0]?.lName} <AiFillEdit style={{fontSize: '1.3rem', marginLeft: '1rem', color: 'green' , cursor : 'pointer'}} onClick={() => setLInput(true)}/>
+            </>
+          }
+          </span>
         }
       </Form.Group>
             <Form.Group className="input-group mb-3">
@@ -108,7 +124,13 @@ function UserProfile() {
           <AiOutlineCheck onClick={() => { handleSubmit(); setPhoneInput(false) }} style={{cursor : 'pointer' , fontSize: '1.3rem', color: 'green' , margin : '1rem'}}/>
           <AiOutlineClose onClick={() => {setPhoneInput(false); setPhoneNumber('')}}  style={{cursor : 'pointer' , fontSize: '1.3rem', color: 'red', margin : '1rem'}}/> 
           </> : 
-          <span style={{marginLeft : '1rem' , marginRight : '1rem'}}>{ myProfile[0]?.phoneNumber } <AiFillEdit style={{fontSize: '1.3rem', marginLeft: '1rem', color: 'green' , cursor : 'pointer'}} onClick={() => setPhoneInput(true)}/></span>
+          <span style={{marginLeft : '1rem' , marginRight : '1rem'}}>
+          {
+            usersLoading ? <Spinner animation="grow" /> : <>
+          { myProfile[0]?.phoneNumber } <AiFillEdit style={{fontSize: '1.3rem', marginLeft: '1rem', color: 'green' , cursor : 'pointer'}} onClick={() => setPhoneInput(true)}/>
+            </>
+          }
+          </span>
         }
       </Form.Group>
                 <Form.Group className="input-group mb-3">
@@ -126,7 +148,13 @@ function UserProfile() {
                     <AiOutlineCheck onClick={() => {setAgeInput(false); handleSubmit()}} style={{cursor : 'pointer' , fontSize: '1.3rem', color: 'green' , margin : '1rem'}}/>
           <AiOutlineClose onClick={() => {setAgeInput(false); setAge('')}}  style={{cursor : 'pointer' , fontSize: '1.3rem', color: 'red', margin : '1rem'}}/> 
                     </> : 
-                    <span style={{marginLeft : '1rem' , marginRight : '1rem' }}>{myProfile[0]?.age} <AiFillEdit style={{fontSize: '1.3rem', marginLeft: '1rem', color: 'green' , cursor : 'pointer'}} onClick={() => setAgeInput(true)}/></span>
+                    <span style={{marginLeft : '1rem' , marginRight : '1rem' }}>
+                    {
+            usersLoading ? <Spinner animation="grow" /> : <>
+                    {myProfile[0]?.age} <AiFillEdit style={{fontSize: '1.3rem', marginLeft: '1rem', color: 'green' , cursor : 'pointer'}} onClick={() => setAgeInput(true)}/>
+            </>
+              }
+                    </span>
                   }
                 </Form.Group>
             <Form.Group className="input-group mb-3">
@@ -137,17 +165,52 @@ function UserProfile() {
             <AiOutlineCheck onClick={() => {handleSubmit() ; setPetInput(false)}} style={{cursor : 'pointer' , fontSize: '1.3rem', color: 'green' , margin : '1rem'}}/>
             <AiOutlineClose onClick={() => { setPetInput(false) ; setPetBreed('') }}  style={{cursor : 'pointer' , fontSize: '1.3rem', color: 'red', margin : '1rem'}}/> 
             </> : 
-            <span style={{marginLeft : '1rem' , marginRight : '1rem'}}>{myProfile[0]?.petBreed} <AiFillEdit style={{fontSize: '1.3rem', marginLeft: '1rem', color: 'green' , cursor : 'pointer'}} onClick={() => setPetInput(true)}/></span>
+            <span style={{marginLeft : '1rem' , marginRight : '1rem'}}>
+              {
+            usersLoading ? <Spinner animation="grow" /> : <>
+            {myProfile[0]?.petBreed} <AiFillEdit style={{fontSize: '1.3rem', marginLeft: '1rem', color: 'green' , cursor : 'pointer'}} onClick={() => setPetInput(true)}/>
+            </>
+              }
+            </span>
           }
           </Form.Group>
-        <Form.Group className="input-group mb-3">
-          <Form.Label className="input-group-text" htmlFor='AddPicId'>Upload your pet</Form.Label>
+          {
+            myProfile[0]?.photo && photo === null &&
+            <>
+            {
+              usersLoading ? <Spinner animation="grow" /> : 
+              <img style={{width: '100px', height: '100px', objectFit: 'cover'}} alt='someting' src={myProfile[0]?.photo}/>
+            }
+            </>
+          }
+          {!photo &&
+        <>
+        <Form.Group className="input-group ">
+           <Form.Label style={{cursor: 'pointer' , background: '#3c4048', padding: '0.5rem', color: 'white', borderRadius: '0.5rem'}} htmlFor='AddPicId'>Update photo pet <AiFillCamera/></Form.Label>
             <Form.Control hidden required type="file" id='AddPicId' onChange={e => handleFileInputChange({ file : e.target.files[0] })} accept="image/*"/>
-            <span>{!photo ? null : photo?.file?.name}</span>
         </Form.Group>
-  <div><span style={photoSize ? {color : "red"} : { color : 'green' }}>The image should be up to 1MB</span></div>
-
-{/* <Button disabled={fName === "" || lName === "" || phoneNumber === "" || age === "" || petBreed === "" || photo === null || photoSize ? true : false} onClick={hadleSubmitForm} type="submit">Submit</Button>   */}
+        </>
+          }
+            <span>{!photo ? null : photo?.file?.name}</span> <br/>
+        {
+        photo && <div>
+          <img style={{width: '100px', height: '100px', objectFit: 'cover'}} alt='someting' src={photo?.url}/>
+          <div style={{display: 'inline-grid'}}>
+          <AiOutlineCheck onClick={() => {handleSubmit() ; setPhoto(null)}} style={{cursor : 'pointer' , fontSize: '1.3rem', color: 'green' , margin : '0.5rem'}}/>
+            <AiOutlineClose onClick={() => { setPhoto(null) }}  style={{cursor : 'pointer' , fontSize: '1.3rem', color: 'red', margin : '0.5rem'}}/> 
+          </div>
+        </div>
+        }
+        <div>
+          {
+            photo !== null && <>
+            {
+            !photoSize ? <span style={{ color : 'green' }}><AiFillCheckCircle/> The image should be up to 1MB</span> :
+            <span style={{color : "red"}}><AiFillCloseCircle/> The image should be up to 1MB</span>
+          }
+            </>
+          }
+        </div>
         </div>
     );
 }

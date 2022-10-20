@@ -26,7 +26,7 @@ export const getAddUserAction = (data) => async (dispatch) => {
 export const getUpdateUserAction = (id , data) => async (dispatch) => {
     dispatch({ type : 'SET_USERS_LOADING' , payload : true })
     await axios.put(`${api}/users/${id.id}` , data)
-    // dispatch({ type : 'UPDATE_USERS' , payload : {id , data} })
+    dispatch({ type : 'UPDATE_USERS' , payload : {id , data} })
     dispatch({ type : 'SET_USERS_LOADING' , payload : false })
 }
 

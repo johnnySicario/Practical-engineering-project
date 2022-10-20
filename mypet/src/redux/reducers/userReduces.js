@@ -22,22 +22,20 @@ const usersReduces = (state = initialState, action) => {
             state = { ...state, users: arrAdd }
             return state;
         case 'UPDATE_USERS':
+            console.log(action.payload.data)
             let userUpdate = state.users.find(item => item._id === action.payload.id.id)
-            userUpdate.username = action.payload.data.username
-            userUpdate.email = action.payload.data.email
-            userUpdate.admin = action.payload.data.admin
+            userUpdate.username = !action.payload.data.username ? userUpdate.username : action.payload.data.username
+            userUpdate.email = !action.payload.data.email ? userUpdate.email : action.payload.data.email
+            userUpdate.fName = !action.payload.data.fName ? userUpdate.fName : action.payload.data.fName
+            userUpdate.lName = !action.payload.data.lName ? userUpdate.lName : action.payload.data.lName
+            userUpdate.petBreed = !action.payload.data.petBreed ? userUpdate.petBreed : action.payload.data.petBreed
+            userUpdate.phoneNumber = !action.payload.data.phoneNumber ? userUpdate.phoneNumber : action.payload.data.phoneNumber
+            userUpdate.photo = !action.payload.data.photo ? userUpdate.photo : action.payload.data.photo
+            userUpdate.age = !action.payload.data.age ? userUpdate.age : action.payload.data.age
+            userUpdate.admin = !action.payload.data.admin ? userUpdate.age : action.payload.data.age
             state = { ...state, users : state.users.map(user => 
                 user._id === action.payload.id.id ? userUpdate : user
             )}
-            return state;
-        case 'UPDATE_USER':
-            // let userUpdate = state.users.find(item => item._id === action.payload.id.id)
-            // userUpdate.username = action.payload.data.username
-            // userUpdate.email = action.payload.data.email
-            // userUpdate.admin = action.payload.data.admin
-            // state = { ...state, users : state.users.map(user => 
-            //     user._id === action.payload.id.id ? userUpdate : user
-            // )}
             return state;
         case 'DELETE_USERS':
             state = { ...state, users : state.users.filter(user => user._id !== action.payload ) }
