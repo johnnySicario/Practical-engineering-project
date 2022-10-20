@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import Contact from '../other/Contact.js';
 import Publication from '../Services/Publication.js';
 import TableServices from '../Services/TableServices.js';
@@ -14,22 +13,18 @@ import About from '../other/About';
 import FAQs from '../other/FAQs';
 import AddPublication from '../Services/AddPublication.js';
 import PetBreed from '../Services/PetBreed';
-import { useDispatch, useSelector } from 'react-redux';
-import { getUserLoading } from '../../redux/actions/getAuthActions.js';
+import { useSelector } from 'react-redux';
 import { ToastContainer } from "react-toastify";  
 import 'react-toastify/dist/ReactToastify.css';
 import UserManagement from '../Administration/UserManagement.js';
 import AddServices from '../Services/AddServices'
 import UserContact from '../Administration/UserContact.js';
 import AddPetBreeds from '../Services/AddPetBreeds.js';
+
+
 const MainPageComp = () => {
     const token = useSelector(state => state.auth.token)
     const auth = useSelector(state => state.auth.auth)
-    const dispatch = useDispatch()
-
-    useEffect(() => {
-        dispatch(getUserLoading())
-    },[dispatch])
 
     return (
         <>
