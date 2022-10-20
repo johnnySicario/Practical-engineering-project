@@ -35,8 +35,8 @@ const cors = require('cors');
 app.use(morgan('combined'));
 app.use(cors());
 app.use(express.json());
-app.use(bodyParser.json({ limit : '1mb' }))
-app.use(bodyParser.urlencoded({ extended: true , limit : '1mb' }))
+app.use(bodyParser.json({ limit : '5mb' }))
+app.use(bodyParser.urlencoded({ extended: true , limit : '5mb' }))
 
 
 
