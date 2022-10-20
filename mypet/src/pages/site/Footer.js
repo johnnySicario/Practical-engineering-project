@@ -20,20 +20,20 @@ const Footer = () => {
             <div className="col-6 col-md-2 mb-3">
               <h5>About Mypet</h5>
               <ul className="nav flex-column">
-                <li style={{ cursor: "pointer" }} className="nav-item mb-2"><a onClick={() => navigate('/')} className="nav-link p-0 text-muted">Home</a></li>
-                <li style={{ cursor: "pointer" }} className="nav-item mb-2"><a onClick={() => navigate('/terms')} className="nav-link p-0 text-muted">Terms of service</a></li>
-                <li style={{ cursor: "pointer" }} className="nav-item mb-2"><a onClick={() => navigate('/FAQs')} className="nav-link p-0 text-muted">FAQs</a></li>
-                <li style={{ cursor: "pointer" }} className="nav-item mb-2"><a onClick={() => navigate('/Contact')} className="nav-link p-0 text-muted">Contact us</a></li>
-                <li style={{ cursor: "pointer" }} className="nav-item mb-2"><a onClick={() => navigate('/About')} className="nav-link p-0 text-muted">About</a></li>
+                <li onClick={() => navigate('/')} style={{ cursor: "pointer" }} className="nav-item mb-2">Home</li>
+                <li onClick={() => navigate('/terms')} style={{ cursor: "pointer" }} className="nav-item mb-2">Terms of service</li>
+                <li onClick={() => navigate('/FAQs')} style={{ cursor: "pointer" }} className="nav-item mb-2">FAQs</li>
+                <li onClick={() => navigate('/contact')} style={{ cursor: "pointer" }} className="nav-item mb-2">Contact us</li>
+                <li onClick={() => navigate('/About')} style={{ cursor: "pointer" }} className="nav-item mb-2">About</li>
               </ul>
             </div>
 
             <div className="col-6 col-md-2 mb-3">
               <h5>Pet adoption</h5>
               <ul className="nav flex-column">
-                <li style={{ cursor: "pointer" }} className="nav-item mb-2"><a onClick={() => navigate('/Publication')} className="nav-link p-0 text-muted">Pet adoption</a></li>
-                <li style={{ cursor: "pointer" }} className="nav-item mb-2"><a onClick={() => navigate('/Service')} className="nav-link p-0 text-muted">Services</a></li>
-                <li style={{ cursor: "pointer" }} className="nav-item mb-2"><a onClick={() => navigate('/PetBreed')} className="nav-link p-0 text-muted">Pet breeds</a></li>
+                <li onClick={() => navigate('/Publication')} style={{ cursor: "pointer" }} className="nav-item mb-2">Pet adoption</li>
+                <li onClick={() => navigate('/Service')} style={{ cursor: "pointer" }} className="nav-item mb-2">Services</li>
+                <li onClick={() => navigate('/PetBreed')} style={{ cursor: "pointer" }} className="nav-item mb-2">Pet breeds</li>
                 <li style={{ cursor: "pointer" }} className="nav-item mb-2"><a target="blank" href="https://spca.co.il/home/" className="nav-link p-0 text-muted">SPCA Israel</a></li>
                 <li style={{ cursor: "pointer" }} className="nav-item mb-2"><a target="blank" href="https://www.letlive.org.il/" className="nav-link p-0 text-muted">letlive Israel</a></li>
               </ul>
@@ -41,8 +41,8 @@ const Footer = () => {
 
             <div className="col-md-5 offset-md-2 mb-3">
               <form>
-                <p className="footer__title">
-                  <h5>Follow us</h5></p>
+                <span className="footer__title">
+                  <h5>Follow us</h5></span>
                 <ul className="social-list">
                   
                  
