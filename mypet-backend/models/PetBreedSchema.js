@@ -6,6 +6,7 @@ let petBreedsSchema = new appSchema({
     title: String,
     text: String,
     picture: String,
+    linktext: String,
     link: String
 }, { versionKey: false })
 

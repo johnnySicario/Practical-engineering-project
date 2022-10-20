@@ -13,9 +13,9 @@ const Contact = () => {
     const [Message, setMessage] = useState('')
 
     const send = (e) => {
+        let obj = {mail:mail, name:Name, message:Message}
         e.preventDefault();
-        axios.post(`${api}/contact`, mail)
-        setMail({})
+        axios.post(`${api}/contact`, obj)
         setFlag(false);
     }
 
