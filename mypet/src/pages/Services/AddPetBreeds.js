@@ -63,6 +63,11 @@ function AddPetBreeds(props) {
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasiclink">
+                    <Form.Label>linktext:</Form.Label>
+                    <Form.Control type="text" placeholder="Enter linktext" onChange={e => { setItem({ ...item, linktext: e.target.value }) }} />
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="formBasiclink">
                     <Form.Label>link:</Form.Label>
                     <Form.Control type="text" placeholder="Enter link" onChange={e => { setItem({ ...item, link: e.target.value }) }} />
                 </Form.Group>

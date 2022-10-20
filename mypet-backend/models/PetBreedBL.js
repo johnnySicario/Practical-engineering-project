@@ -22,6 +22,7 @@ var addPetBreeds = (newPetBreeds) => {
             title: newPetBreeds.title,
             text: newPetBreeds.text,
             picture: newPetBreeds.picture,
+            linktext: newPetBreeds.linktext,
             link: newPetBreeds.link
         })
         

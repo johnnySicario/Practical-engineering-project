@@ -33,13 +33,13 @@ function PetBreed(props) {
   let newsCard = news.map((data, index) => {
     return (
       <Col key={"Card"+index+"petBreed"}>
-        <input type="button" value="delete" onClick={() => deleteNew(data._id)} />
+        {auth.admin?<input type="button" value="delete" onClick={() => deleteNew(data._id)} />:null}
         <Card style={{ width: '18rem', marginBottom: '4rem' }}>
           <Card.Img variant="top" src={data.picture} />
           <Card.Body>
             <Card.Title>{data.title}</Card.Title>
             <Card.Text>{data.text}</Card.Text>
-            <Button variant="primary">{data.link}</Button>
+            <Button variant="primary"><a href={data.link} style={{color:"white"}}> {data.linktext} </a></Button>
           </Card.Body>
         </Card>
       </Col>
