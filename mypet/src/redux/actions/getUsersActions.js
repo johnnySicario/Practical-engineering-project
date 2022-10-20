@@ -1,5 +1,6 @@
 import axios from "axios"
 import { api } from "../api"
+import { toast } from 'react-toastify';
 
 
 export const getUsersAction = (data) => async (dispatch) => {
@@ -22,14 +23,17 @@ export const getAddUserAction = (data) => async (dispatch) => {
 }
 
 
-export const getUpdateUserAction = (data) => async (dispatch) => {
+export const getUpdateUserAction = (id , data) => async (dispatch) => {
     dispatch({ type : 'SET_USERS_LOADING' , payload : true })
-    dispatch({ type : 'UPDATE_USERS' , payload : data.payload })
+    await axios.put(`${api}/users/${id.id}` , data)
+    dispatch({ type : 'UPDATE_USERS' , payload : {id , data} })
     dispatch({ type : 'SET_USERS_LOADING' , payload : false })
 }
 
-export const getDeleteUserAction = (data) => async (dispatch) => {
+export const getDeleteUserAction = (id) => async (dispatch) => {
     dispatch({ type : 'SET_USERS_LOADING' , payload : true })
-    dispatch({ type : 'DELETE_USERS' , payload : data.payload })
+    await axios.delete(`${api}/users/${id}`)
+    dispatch({ type : 'DELETE_USERS' , payload : id })
+    toast.success('The user deleted!' , {position : "bottom-right"})
     dispatch({ type : 'SET_USERS_LOADING' , payload : false })
 }

@@ -22,23 +22,16 @@ const usersReduces = (state = initialState, action) => {
             state = { ...state, users: arrAdd }
             return state;
         case 'UPDATE_USERS':
-            console.log(action.payload)
-            axios.put(api + "/users/" + action.payload._id, action.payload);
-            let arrUpdate = state.users;
-            let index = arrUpdate.findIndex(x => x.id == action.payload._id)
-            if (index >= 0) {
-                arrUpdate[index] = { ...arrUpdate[index], ...action.payload };
-            }
-            state = { ...state, users: arrUpdate }
+            let userUpdate = state.users.find(item => item._id === action.payload.id.id)
+            userUpdate.username = action.payload.data.username
+            userUpdate.email = action.payload.data.email
+            userUpdate.admin = action.payload.data.admin
+            state = { ...state, users : state.users.map(user => 
+                user._id === action.payload.id.id ? userUpdate : user
+            )}
             return state;
         case 'DELETE_USERS':
-            axios.delete(api + "/users/" + action.payload);
-            let arrDelete = state.users.filter(user => {
-                if (user._id !== action.payload) {
-                    return user;
-                }
-            })
-            state = { ...state, users: arrDelete }
+            state = { ...state, users : state.users.filter(user => user._id !== action.payload ) }
             return state;
         case 'SET_USERS_LOADING':
             state = { ...state, usersLoading: action.payload }

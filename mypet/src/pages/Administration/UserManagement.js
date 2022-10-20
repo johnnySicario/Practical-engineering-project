@@ -2,61 +2,18 @@ import React, { useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUsersAction, getUpdateUserAction, getDeleteUserAction } from '../../redux/actions/getUsersActions.js';
+import UserManageComp from './userManage.js';
 import './UserManagement.css';
 
 const UserManagement = () => {
     const dispatch = useDispatch()
     const users = useSelector(state => state.users.users)
 
+    console.log(users);
+
     useEffect(() => {
         dispatch(getUsersAction())
     }, [dispatch])
-
-    const updateUser = (id) => {
-        let userToUpdate = users
-        let index = userToUpdate.findIndex(user => user._id == id)
-        console.log(userToUpdate[index])
-        if (index >= 0) {
-            dispatch(getUpdateUserAction({ type: 'UPDATE_USERS', payload: userToUpdate[index] }))
-        }
-    }
-    const deleteUser = (id) => {
-        dispatch(getDeleteUserAction({ type: 'DELETE_USERS', payload: id }))
-    }
-
-    const ManageUser = (check) => {
-        console.log('check ', check)
-    }
-
-    const change = (e, id, type) => {
-        let userToUpdate = users
-        let index = userToUpdate.findIndex(user => user._id == id)
-        if (index >= 0) {
-            if (type === 'username')
-                users[index].username = e.target.value
-            if (type === 'email')
-                users[index].email = e.target.value
-            if (type === 'admin')
-                users[index].admin = !users[index].admin
-        }
-        users[index] = userToUpdate[index];
-    }
-
-    let usersTable = users.map((data, index) => {
-        return (
-            <tr key={data._id}>
-                <td>{index + 1}</td>
-                <td><input type="text" defaultValue={data.username} onChange={(e) => { change(e, data._id, "username") }} /></td>
-                <td><input type="text" defaultValue={data.email} onChange={(e) => { change(e, data._id, "email") }} /></td>
-                <td>
-                    <input type="checkbox" defaultChecked={data.admin ? true : false} onChange={(e) => { change(e, data._id, "admin") }} />
-                </td>
-                <td> <input type="button" defaultValue="delete" onClick={() => deleteUser(data._id)} /> </td>
-                <td> <input type="button" defaultValue="update" onClick={() => updateUser(data._id)} /> </td>
-            </tr>
-        )
-    })
-
 
     return (
         <div>
@@ -72,7 +29,11 @@ const UserManagement = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {usersTable}
+                    {
+                        users.map((item , index) => {
+                            return <tr key={item._id}><UserManageComp data={item} index={index +1}/></tr>
+                        })
+                    }
                 </tbody>
             </Table>
         </div>
