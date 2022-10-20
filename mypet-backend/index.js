@@ -10,12 +10,13 @@ const publicationController = require("./controllers/publicationController");
 const authenticationController = require("./controllers/authentication");
 let cookieSession = require("cookie-session");
 const passport = require("passport");
+require('dotenv').config()
 
 const port = process.env.PORT || 8000;
 
 // connect with mongo db
 mongoose.connect(
-  keys.mongoURI,
+  process.env.mongoURI,
   { useNewUrlParser: true, useUnifiedTopology: true },
   () => {
     console.log("connnected to mongo DB");
