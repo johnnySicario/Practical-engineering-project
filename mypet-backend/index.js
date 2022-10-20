@@ -32,11 +32,11 @@ const morgan = require('morgan');
 const cors = require('cors');
 
 //App Setup
-app.use(morgan('combined'));
+// app.use(morgan('combined'));
 app.use(cors());
 app.use(express.json());
-app.use(bodyParser.json({ limit : '5mb' }))
-app.use(bodyParser.urlencoded({ extended: true , limit : '5mb' }))
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
 
 
