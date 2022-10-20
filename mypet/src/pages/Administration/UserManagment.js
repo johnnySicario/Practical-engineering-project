@@ -36,6 +36,8 @@ function UserManagment(props) {
                 users[index].username = e.target.value
             if (type === 'email')
                 users[index].email = e.target.value
+            if (type === 'admin')
+                users[index].admin = !users[index].admin
         }
         users[index] = userToUpdate[index];
     }
@@ -47,7 +49,7 @@ function UserManagment(props) {
                 <td><input type="text" defaultValue={data.username} onChange={(e) => { change(e, data._id, "username") }} /></td>
                 <td><input type="text" defaultValue={data.email} onChange={(e) => { change(e, data._id, "email") }} /></td>
                 <td>
-                    <input type="checkbox" defaultChecked={data.admin ? true : false} onChange={() => ManageUser(data.admin)} />
+                    <input type="checkbox" defaultChecked={data.admin ? true : false} onChange={(e) => { change(e, data._id, "admin") }} />
                 </td>
                 <td> <input type="button" defaultValue="delete" onClick={() => deleteUser(data._id)} /> </td>
                 <td> <input type="button" defaultValue="update" onClick={() => updateUser(data._id)} /> </td>
