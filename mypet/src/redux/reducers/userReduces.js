@@ -30,6 +30,15 @@ const usersReduces = (state = initialState, action) => {
                 user._id === action.payload.id.id ? userUpdate : user
             )}
             return state;
+        case 'UPDATE_USER':
+            // let userUpdate = state.users.find(item => item._id === action.payload.id.id)
+            // userUpdate.username = action.payload.data.username
+            // userUpdate.email = action.payload.data.email
+            // userUpdate.admin = action.payload.data.admin
+            // state = { ...state, users : state.users.map(user => 
+            //     user._id === action.payload.id.id ? userUpdate : user
+            // )}
+            return state;
         case 'DELETE_USERS':
             state = { ...state, users : state.users.filter(user => user._id !== action.payload ) }
             return state;

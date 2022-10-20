@@ -4,7 +4,12 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
   idSocial: String,
   username: String,
-  picture: String,
+  fName : String,
+  lName : String,
+  Phone : String,
+  age : String,
+  petBreed : String,
+  photo: String,
   email: { type: String, unique: true, lowercase: true },
   password: { type: String },
   admin: Boolean

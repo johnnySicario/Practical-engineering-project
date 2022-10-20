@@ -3,6 +3,8 @@ import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { api } from './../api';
+import './other.css';
+
 
 const Contact = () => {
     const [flag, setFlag] = useState(true);
@@ -21,7 +23,7 @@ const Contact = () => {
 
     return (
 
-        <div>
+        <div className="first">
             {flag ?
                 <Form>
                     <Form.Group className="mb-3" controlId="formBasicName">
@@ -35,7 +37,7 @@ const Contact = () => {
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicMassage">
-                        <Form.Label>message</Form.Label>
+                        <Form.Label>Message</Form.Label>
                         <Form.Control type="text" placeholder="Enter massage" onChange={e => { setMessage(e.target.value) }} />
                     </Form.Group>
 
