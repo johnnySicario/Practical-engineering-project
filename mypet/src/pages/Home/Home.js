@@ -20,6 +20,7 @@ import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import UserManagment from '../Administration/UserManagment.js';
 import AddServices from '../Services/AddServices'
+import UserContact from '../Administration/UserContact.js';
 const MainPageComp = () => {
     const token = useSelector(state => state.auth.token)
     const dispatch = useDispatch()
@@ -47,6 +48,7 @@ const MainPageComp = () => {
                 <Route path='/PetBreed' element={token ? <PetBreed /> : <Navigate to="/login"/>} />
                 <Route path='/users' element={token ? <UserManagment /> : <Navigate to="/login"/>} />
                 <Route path='/addService' element={token ? <AddServices /> : <Navigate to="/login"/>} />
+                <Route path='/userContact' element={token ? <UserContact /> : <Navigate to="/login"/>} />
             </Routes>
             { token ? <Footer /> : null}
         </>

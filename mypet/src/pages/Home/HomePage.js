@@ -1,6 +1,5 @@
 import Carousel from "react-bootstrap/Carousel";
-import React, { useEffect, useState } from "react";
-import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
+import React, { useEffect } from "react";
 import Button from "react-bootstrap/esm/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPublications } from './../../redux/actions/getPublcationActions';

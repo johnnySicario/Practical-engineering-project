@@ -9,7 +9,7 @@ const Footer = () => {
 
   return (
     <div style={{ marginTop: "4rem" }}>
-      <div text align="center" className="p-0 bg-success bg-opacity-5 border-info  boundary ">
+      <div text-align="center" className="p-0 bg-success bg-opacity-5 border-info  boundary ">
         MyPet, because we care
       </div>
 
