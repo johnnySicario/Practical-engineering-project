@@ -4,9 +4,11 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { api } from './../api';
 
-function Contact(props) {
+const Contact = () => {
     const [flag, setFlag] = useState(true);
-    const [mail, setMail] = useState({})
+    const [mail, setMail] = useState('')
+    const [Name, setName] = useState('')
+    const [Message, setMessage] = useState('')
 
     const send = (e) => {
         e.preventDefault();
@@ -16,6 +18,7 @@ function Contact(props) {
     }
 
 
+
     return (
 
         <div>
@@ -23,20 +26,20 @@ function Contact(props) {
                 <Form>
                     <Form.Group className="mb-3" controlId="formBasicName">
                         <Form.Label>Name</Form.Label>
-                        <Form.Control type="text" placeholder="Enter name" onChange={e => { setMail({ ...mail, name: e.target.value }) }} />
+                        <Form.Control type="text" placeholder="Enter name" onChange={e => { setName(e.target.value ) }} />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
-                        <Form.Control type="email" placeholder="Enter email" onChange={e => { setMail({ ...mail, mail: e.target.value }) }} />
+                        <Form.Control type="email" placeholder="Enter email" onChange={e => { setMail( e.target.value) }} />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicMassage">
-                        <Form.Label>massage</Form.Label>
-                        <Form.Control type="text" placeholder="Enter massage" onChange={e => { setMail({ ...mail, massage: e.target.value }) }} />
+                        <Form.Label>message</Form.Label>
+                        <Form.Control type="text" placeholder="Enter massage" onChange={e => { setMessage(e.target.value) }} />
                     </Form.Group>
 
-                    <Button variant="primary" type="button" onClick={send}>
+                    <Button disabled={Name === "" || mail === ""|| Message === "" ? true : false} variant="primary" type="submit" onClick={send}>
                         Submit
                     </Button>
                 </Form>
@@ -46,4 +49,4 @@ function Contact(props) {
     );
 }
 
-export default Contact;
+export default Contact
