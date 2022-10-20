@@ -49,7 +49,6 @@ const Footer = () => {
                     <a  target="_blank" title="facebook" href="https://www.facebook.com/profile.php?id=100087144813664">
                       <svg className="icon icon-facebook" aria-hidden="true" width="5%" focusable="false" viewBox="0 0 8 14"><path fill="currentColor" d="M7.229.099v2.21l-1.311.003c-1.028 0-1.226.488-1.226 1.202v1.58H7.14l-.318 2.473h-2.13V14H2.138V7.567H0V5.095h2.138V3.27C2.138 1.154 3.428 0 5.32 0 6.222 0 7 .068 7.229.099z"></path>
                       </svg> 
-                 
                     </a>
                 
                   
