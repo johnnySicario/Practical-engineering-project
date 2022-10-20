@@ -5,3 +5,10 @@
     flex-direction: column;
     align-items: center;
 }
+
+.first{
+    float: left;
+    width: 10%;
+    flex-direction: column;
+    
+}
