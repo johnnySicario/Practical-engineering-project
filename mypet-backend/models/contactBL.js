@@ -32,7 +32,7 @@ var addContact = (newContact) => {
         var contact = new Contact({
             name: newContact.name,
             mail: newContact.mail,
-            massage: newContact.massage
+            message: newContact.message
         })
         contact.save((err) => {
             if (err) {

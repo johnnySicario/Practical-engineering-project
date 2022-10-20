@@ -54,7 +54,7 @@ function UserContact(props) {
                 <td>{index + 1}</td>
                 <td>{data.name}</td>
                 <td>{data.mail}</td>
-                <td>{data.massage}</td>
+                <td>{data.message}</td>
                 {auth.admin ? <td><input type="button" value="delete" onClick={() => deleteContact(data._id)} /></td> : null}
             </tr>
         )

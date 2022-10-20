@@ -10,10 +10,10 @@ const Contact = () => {
     const [flag, setFlag] = useState(true);
     const [mail, setMail] = useState('')
     const [Name, setName] = useState('')
-    const [Message, setMessage] = useState('')
+    const [message, setMessage] = useState('')
 
     const send = (e) => {
-        let obj = {mail:mail, name:Name, message:Message}
+        let obj = {mail:mail, name:Name, message:message}
         e.preventDefault();
         axios.post(`${api}/contact`, obj)
         setFlag(false);
@@ -41,7 +41,7 @@ const Contact = () => {
                         <Form.Control type="text" placeholder="Enter massage" onChange={e => { setMessage(e.target.value) }} />
                     </Form.Group>
 
-                    <Button disabled={Name === "" || mail === ""|| Message === "" ? true : false} variant="primary" type="submit" onClick={send}>
+                    <Button disabled={Name === "" || mail === ""|| message === "" ? true : false} variant="primary" type="submit" onClick={send}>
                         Submit
                     </Button>
                 </Form>
