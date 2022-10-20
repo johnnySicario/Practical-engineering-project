@@ -23,7 +23,7 @@ const Contact = () => {
 
     return (
 
-        <div className="first">
+        <div >
             {flag ?
                 <Form>
                     <Form.Group className="mb-3" controlId="formBasicName">

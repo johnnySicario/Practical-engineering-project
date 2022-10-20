@@ -41,7 +41,8 @@ const Footer = () => {
 
             <div className="col-md-5 offset-md-2 mb-3">
               <form>
-                <p className="footer__title">Follow us</p>
+                <p className="footer__title">
+                  <h5>Follow us</h5></p>
                 <ul className="social-list">
                   <li>
                  
