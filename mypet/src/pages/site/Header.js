@@ -3,16 +3,20 @@ import { useNavigate } from 'react-router-dom';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Nav from 'react-bootstrap/Nav';
 import { useDispatch, useSelector } from 'react-redux';
-import { getLogOut, getUserLoading } from '../../redux/actions/getAuthActions';
+import { getLogOut } from '../../redux/actions/getAuthActions';
 import logo from '../../logo.jpg';
+import { getUsersAction } from './../../redux/actions/getUsersActions';
 const Header = () => {
     const navigate = useNavigate()
     const token = useSelector(state => state.auth.token)
     const auth = useSelector(state => state.auth.auth)
+    const users = useSelector(state => state.users.users)
     const dispatch = useDispatch()
 
+    let myProfile = users.filter(user => user._id === auth.id)?.[0]
+
     useEffect(() => {
-        dispatch(getUserLoading())
+        dispatch(getUsersAction())
     },[dispatch])
 
     const logOut = () => {
@@ -71,7 +75,11 @@ const Header = () => {
                             </Nav.Item>
                         </> : <>
                             <Nav.Item style={{margin: '0rem 1rem'}}>
-                                <span>Hello {auth?.username},</span>
+                                <span>Hello {auth?.username},
+                                <img style={{width: '50px', height: '50px', objectFit: 'cover', borderRadius: '114%', border: 'white 1px solid'}} src={myProfile?.photo} alt={myProfile?.username}/>
+                                </span>
+                            </Nav.Item>
+                            <Nav.Item style={{margin: '0rem 1rem'}}>
                                 <Nav.Link eventKey="1" onClick={logOut}>
                                     Log Out
                                 </Nav.Link>
