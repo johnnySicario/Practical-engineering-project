@@ -5,6 +5,8 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getServicesAction, DeleteServicesAction } from '../../redux/actions/getServicesActions.js';
+import './services.css';
+
 
 const TableServices = () => {
     const dispatch = useDispatch()
@@ -59,14 +61,14 @@ const TableServices = () => {
 
 
     return (
-        <div>
+        <div className="firstdiv">
             {auth.admin ? <input type="button" value="add service"
                 onClick={() => { navigate('/addService') }}
             /> : null} <br />
 
             <InputGroup size="sm" className="mb-3">
                 <InputGroup.Text id="inputGroup-sizing-sm">Search:</InputGroup.Text>
-                <Form.Control
+                <Form.Control 
                     aria-label="Small"
                     aria-describedby="inputGroup-sizing-sm"
                     onChange={inputHandler}
