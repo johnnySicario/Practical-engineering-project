@@ -14,6 +14,32 @@ export const getAuthAction = (data) => async (dispatch) => {
     dispatch({ type : 'SET_USERS_LOADING' , payload : false })
 }
 
+export const getAuthGoogleAction = (data) => async (dispatch) => {
+    dispatch({ type : 'SET_USERS_LOADING' , payload : true })
+    await axios.get(`${api}/auth/google`).then(resp => {
+        localStorage.setItem('token' , JSON.stringify( resp.data.token))
+        dispatch({type : 'GET_LOGIN', payload : resp.data})
+        toast.success("Login Successfully" , {position : "bottom-right"})
+        console.log("resp.data")
+    }).catch((err) => {
+        console.log("ERR")
+        toast.error(err.response.data.passwordincorrect || err.response.data.emailnotfound , {position : "bottom-right"})
+    })
+    dispatch({ type : 'SET_USERS_LOADING' , payload : false })
+}
+export const getAuthFacebookAction = (data) => async (dispatch) => {
+    dispatch({ type : 'SET_USERS_LOADING' , payload : true })
+    await axios.get(`${api}/auth/facebook`).then(resp => {
+        localStorage.setItem('token' , JSON.stringify( resp.data.token))
+        dispatch({type : 'GET_LOGIN', payload : resp.data})
+        toast.success("Login Successfully" , {position : "bottom-right"})
+        console.log("resp.data")
+    }).catch((err) => {
+        console.log("ERR")
+        toast.error(err.response.data.passwordincorrect || err.response.data.emailnotfound , {position : "bottom-right"})
+    })
+    dispatch({ type : 'SET_USERS_LOADING' , payload : false })
+}
 export const getUserLoading = () => async (dispatch , getState) => {
     dispatch({ type : 'SET_USERS_LOADING' , payload : true })
     let token = getState()?.auth?.token

@@ -8,6 +8,7 @@ const serviceController = require("./controllers/serviceController");
 const PetBreedsController = require("./controllers/PetBreedsController");
 const publicationController = require("./controllers/publicationController");
 const authenticationController = require("./controllers/authentication");
+const socialController = require("./routes/authRoute");
 let cookieSession = require("cookie-session");
 const passport = require("passport");
 
@@ -35,7 +36,7 @@ const cors = require('cors');
 app.use(morgan('combined'));
 app.use(cors());
 app.use(bodyParser.json({ type: '*/*' }));
-// app.use(express.json());
+app.use(express.json());
 
 
 
@@ -52,6 +53,7 @@ app.use(passport.session());
 /* ================ Creating Cookie Key and link with Passport JS: End ================  */
 
 require("./routes/authRoute")(app);
+// app.use("/social",socialController);
 app.use('/users', usersController)
 app.use('/contact', contactController)
 app.use('/authentication', authenticationController)
