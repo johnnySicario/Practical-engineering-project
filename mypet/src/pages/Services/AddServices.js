@@ -11,9 +11,9 @@ function AddServices(props) {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-    const AddServices = (e) => {
+    const AddServices = async (e) => {
         e.preventDefault()
-        dispatch(AddServicesAction({ type: 'ADD_SERVICES', payload: service }))
+        await dispatch(AddServicesAction({ type: 'ADD_SERVICES', payload: service }))
         navigate('/service')
     }
 
