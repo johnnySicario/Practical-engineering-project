@@ -39,7 +39,7 @@ function PetBreed(props) {
           <Card.Body>
             <Card.Title>{data.title}</Card.Title>
             <Card.Text>{data.text}</Card.Text>
-            <Button variant="primary"><a href={data.link} style={{color:"white"}}> {data.linktext} </a></Button>
+            <Button variant="primary"><a href={data.link} target="_blank" style={{color:"white"}}> {data.linktext} </a></Button>
           </Card.Body>
         </Card>
       </Col>

@@ -61,14 +61,15 @@ const TableServices = () => {
 
 
     return (
-        <div className="firstdiv">
+        <div >
             {auth.admin ? <input type="button" value="add service"
                 onClick={() => { navigate('/addService') }}
             /> : null} <br />
 
             <InputGroup size="sm" className="mb-3">
-                <InputGroup.Text id="inputGroup-sizing-sm">Search:</InputGroup.Text>
+                <InputGroup.Text id="inputGroup-sizing-sm">Search</InputGroup.Text>
                 <Form.Control 
+                
                     aria-label="Small"
                     aria-describedby="inputGroup-sizing-sm"
                     onChange={inputHandler}

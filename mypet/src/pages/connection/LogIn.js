@@ -3,7 +3,7 @@ import './LogIn.css';
 import { connect, useDispatch, useSelector } from "react-redux";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { getAuthAction } from '../../redux/actions/getAuthActions';
+import { getAuthAction, getAuthGoogleAction, getAuthFacebookAction } from '../../redux/actions/getAuthActions';
 import { useNavigate } from 'react-router-dom';
 import logo from '../../logo.jpg';
 
@@ -20,9 +20,22 @@ const LogIn = () => {
         dispatch(getAuthAction(obj))
     }
 
+    const google = async (e) => {
+        dispatch(getAuthGoogleAction())
+    }
+    const facebook = async (e) => {
+        dispatch(getAuthFacebookAction())
+    }
+
     return (
         <div className="firstDiv">
             <img src={logo} alt="logo" width="20%" height="20%" />
+            <Button variant="primary" onClick={google}>
+                Google
+            </Button>
+            <Button variant="primary" onClick={facebook}>
+                Facebook
+            </Button>
             <Form onSubmit={login}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
