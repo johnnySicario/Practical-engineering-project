@@ -17,3 +17,10 @@ export const getAddPublications = (data) => async (dispatch) => {
     await toast.success('The Publication added!' , {position : "bottom-right"})
     dispatch({ type : 'SET_PUBLICATION_LOADING' , payload : false })
 }
+
+export const getDeletePublication = (id) => async (dispatch) => {
+    dispatch({ type : 'SET_PUBLICATION_LOADING' , payload : true })
+    await axios.delete(`${api}/publication/${id}`)
+    dispatch({ type : 'GET_DELETE_PUBLICATION' , payload : id })
+    dispatch({ type : 'SET_PUBLICATION_LOADING' , payload : false })
+}

@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllPublications } from './../../redux/actions/getPublcationActions';
 
 const HomePageComp = () => {
-  const token = useSelector((state) => state.users);
   const dispatch = useDispatch()
   const publications = useSelector(state => state.publication.publications)
 
