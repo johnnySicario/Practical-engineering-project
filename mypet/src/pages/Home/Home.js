@@ -21,6 +21,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import UserManagement from '../Administration/UserManagement.js';
 import AddServices from '../Services/AddServices'
 import UserContact from '../Administration/UserContact.js';
+import AddPetBreeds from '../Services/AddPetBreeds.js';
 const MainPageComp = () => {
     const token = useSelector(state => state.auth.token)
     const auth = useSelector(state => state.auth.auth)
@@ -50,6 +51,7 @@ const MainPageComp = () => {
                 <Route path='/users' element={token && auth?.admin ? <UserManagement /> : <Navigate to="/"/>} />
                 <Route path='/addService' element={token ? <AddServices /> : <Navigate to="/login"/>} />
                 <Route path='/userContact' element={token ? <UserContact /> : <Navigate to="/login"/>} />
+                <Route path='/AddPetBreed' element={token ? <AddPetBreeds /> : <Navigate to="/login"/>} />
             </Routes>
             { token ? <Footer /> : null}
         </>
