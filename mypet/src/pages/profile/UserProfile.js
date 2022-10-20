@@ -36,7 +36,6 @@ function UserProfile() {
   }, [dispatch])
 
   let myProfile = users.filter(user => user._id === auth.id)
-  console.log(usersLoading);
 
     useEffect(() => {
       if(photo !== null) {
