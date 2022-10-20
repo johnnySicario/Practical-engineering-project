@@ -3,28 +3,54 @@ import axios from 'axios';
 import Table from 'react-bootstrap/Table';
 import { useSelector } from 'react-redux';
 import { api } from './../api';
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
 
 function UserContact(props) {
     const [mail, setMail] = useState([])
     const auth = useSelector(state => state.auth.auth)
+    const [search, setSearch] = useState("");
+    const [mailSearch, setMailSearch] = useState([]);
+    const [start, setStart] = useState(false);
+
+    // useEffect(() =
+
     useEffect(() => {
-        async function fetchData() {
+        const fetchData = async () => {
             let resp = await axios.get(`${api}/contact`)
             setMail(resp.data);
+            setMailSearch(resp.data);
         }
 
         fetchData();
-    }, [mail]);
+    }, [start]);
 
-    const deleteContact = async (id) => {
-        await axios.delete(`${api}/contact/${id}`)
-        let newMail = mail.filter(mail => mail.id !== id)
-        setMail(newMail);
+    useEffect(() => {
+        let dataFilter = mail.filter((searchInput) => {
+            if (search === '') {
+                return searchInput;
+            }
+            if (searchInput.name.toLowerCase().includes(search) ||
+                searchInput.mail.toLowerCase().includes(search)) {
+                return searchInput
+            }
+        })
+        setMailSearch(dataFilter)
+    }, [search])
+
+    const inputHandler = (e) => {
+        var lowerCase = e.target.value.toLowerCase();
+        setSearch(lowerCase);
     }
 
-    let contactTable = mail.map((data, index) => {
+    const deleteContact = async (id) => {
+        await axios.delete(`${api}/contact/${id}`);
+        setStart(true)
+    }
+
+    let contactTable = mailSearch.map((data, index) => {
         return (
-            <tr key={"key" + index + "contactTable"}>
+            <tr key={"keyOf" + index + "contactTable" + index}>
                 <td>{index + 1}</td>
                 <td>{data.name}</td>
                 <td>{data.mail}</td>
@@ -36,6 +62,15 @@ function UserContact(props) {
 
     return (
         <div>
+            <InputGroup size="sm" className="mb-3">
+                <InputGroup.Text id="inputGroup-sizing-sm">Search:</InputGroup.Text>
+                <Form.Control
+                    aria-label="Small"
+                    aria-describedby="inputGroup-sizing-sm"
+                    onChange={inputHandler}
+                />
+            </InputGroup> <br />
+
             <Table striped bordered hover>
                 <thead>
                     <tr>
